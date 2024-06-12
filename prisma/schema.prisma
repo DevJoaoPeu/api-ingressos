@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum TicketType {
+  PISTA
+  VIP
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String   @unique
+  password   String
+  dtCreation DateTime @default(now())
+  sale       Sale[]
+
+  @@map("user")
+}
+
+model Event {
+  id       Int      @id @default(autoincrement())
+  name     String   @db.VarChar(50)
+  dtStart  DateTime
+  dtEnd    DateTime
+  location String   @db.VarChar(100)
+  tickets  Ticket[]
+
+  @@map("event")
+}
+
+model Ticket {
+  id             Int        @id @default(autoincrement())
+  event          Event      @relation(fields: [eventId], references: [id])
+  eventId        Int
+  type           TicketType
+  price          Decimal  @db.Decimal(18,2)
+  qtAvailable    Int
+  dtAvailability DateTime
+  sale           Sale[]
+
+  @@map("ticket")
+}
+
+model Sale {
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  ticket      Ticket   @relation(fields: [ticketId], references: [id])
+  ticketId    Int
+  quantity    Int
+  amountTotal Float
+  dateSale    DateTime @default(now())
+
+  @@map("sale")
+}
