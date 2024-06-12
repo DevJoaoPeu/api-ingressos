@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres
+    container_name: api-ingressos
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: api-ingressos
+    ports:
+      - "5432:5432"
+    volumes:
+      - "./.postgres-data:/var/data/lib/postgresql/data"
