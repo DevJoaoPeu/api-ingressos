@@ -25,6 +25,7 @@ model User {
   password   String
   dtCreation DateTime @default(now())
   sale       Sale[]
+  Event      Event[]
 
   @@map("user")
 }
@@ -32,6 +33,8 @@ model User {
 model Event {
   id       String   @id @default(uuid())
   name     String   @db.VarChar(50)
+  user     User     @relation(fields: [userId], references: [id])
+  userId   String
   dtStart  DateTime
   dtEnd    DateTime
   location String   @db.VarChar(100)
@@ -44,9 +47,9 @@ model Ticket {
   id             String     @id @default(uuid())
   event          Event      @relation(fields: [eventId], references: [id])
   eventId        String
+  ownerId        String?
   type           TicketType
   price          Decimal    @db.Decimal(18, 2)
-  qtAvailable    Int
   dtAvailability DateTime
   sale           Sale[]
 
