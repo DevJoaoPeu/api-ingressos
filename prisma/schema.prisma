@@ -31,14 +31,15 @@ model User {
 }
 
 model Event {
-  id       String   @id @default(uuid())
-  name     String   @db.VarChar(50)
-  user     User     @relation(fields: [userId], references: [id])
-  userId   String
-  dtStart  DateTime
-  dtEnd    DateTime
-  location String   @db.VarChar(100)
-  tickets  Ticket[]
+  id               String             @id @default(uuid())
+  name             String             @db.VarChar(50)
+  user             User               @relation(fields: [userId], references: [id])
+  userId           String
+  dtStart          DateTime
+  dtEnd            DateTime
+  location         String             @db.VarChar(100)
+  tickets          Ticket[]
+  ControllerTicket ControllerTicket[]
 
   @@map("event")
 }
@@ -67,4 +68,14 @@ model Sale {
   confirmationCode String   @unique @default(uuid())
 
   @@map("sale")
+}
+
+model ControllerTicket {
+  id       String     @id @default(uuid())
+  qtTicket Int
+  type     TicketType
+  event    Event      @relation(fields: [eventId], references: [id])
+  eventId  String
+
+  @@map("controllerTicket")
 }
