@@ -62,7 +62,6 @@ model Sale {
   userId           String
   ticket           Ticket   @relation(fields: [ticketId], references: [id])
   ticketId         String
-  quantity         Int
   amountTotal      Float
   dateSale         DateTime @default(now())
   confirmationCode String   @unique @default(uuid())
