@@ -74,6 +74,7 @@ model ControllerTicket {
   id       String     @id @default(uuid())
   qtTicket Int
   type     TicketType
+  price    Decimal    @db.Decimal(18, 2)
   event    Event      @relation(fields: [eventId], references: [id])
   eventId  String
 
