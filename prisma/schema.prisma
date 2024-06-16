@@ -51,6 +51,7 @@ model Ticket {
   ownerId        String?
   type           TicketType
   price          Decimal    @db.Decimal(18, 2)
+  qtTicket       Int
   dtAvailability DateTime
   sale           Sale[]
 
