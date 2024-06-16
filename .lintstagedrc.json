@@ -1,6 +1,7 @@
 {
   "*.ts": [
     "yarn eslint 'src/**' --fix",
+    "yarn prettier --write 'src/**'",
     "yarn prettier --check 'src/**'"
   ]
 }
