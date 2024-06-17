@@ -1,7 +1,7 @@
 import * as Express from "express"
 
-import { router } from "./routes"
 import * as dotenv from "dotenv"
+import { router } from "@/routes"
 
 dotenv.config()
 

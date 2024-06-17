@@ -1,9 +1,9 @@
-export interface ICreateUser {
+export interface ICreateUserParams {
   email: string
   name: string
   password: string
 }
 
-export interface ICreateUserBody {
-  body: ICreateUser
+export interface IHttpRequest {
+  body: ICreateUserParams
 }

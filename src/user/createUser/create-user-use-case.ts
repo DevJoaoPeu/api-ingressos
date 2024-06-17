@@ -1,6 +1,6 @@
-import { ICreateUser } from "@/types/user/type"
+import { ICreateUserParams } from "@/types/user/type"
 import { CreateUserRepository } from "./create-user-repository"
-import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-reposiotry"
+import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-email-repository"
 import { EmailAlreadyExists } from "@/erros/user/EmailAlreadyExists"
 import { hash } from "bcrypt"
 
@@ -13,7 +13,7 @@ export class CreateUserUseCase {
     this.findUserByEmailRepository = findUserByEmailRepository
   }
 
-  async execute(createUserParams: ICreateUser) {
+  async execute(createUserParams: ICreateUserParams) {
     const userWithProvidedEmail = await this.findUserByEmailRepository.execute(
       createUserParams.email
     )
