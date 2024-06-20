@@ -3,3 +3,6 @@ coverage
 dist
 .env
 .postgres-data
+
+yarn.lock
+package-lock.json
