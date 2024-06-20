@@ -4,6 +4,12 @@ export interface ICreateUserParams {
   password: string
 }
 
-export interface IHttpRequest {
+export interface ICreateHttpRequest {
   body: ICreateUserParams
+}
+export interface IUpdateUserParams {
+  body?: ICreateUserParams
+  params: {
+    userId: string
+  }
 }
