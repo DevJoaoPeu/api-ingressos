@@ -11,9 +11,9 @@ export class UpdateUserController {
     this.updateUserUseCase = updateUserUseCase
   }
 
-  async execute(httpRequest) {
+  async execute(httpRequest: IUpdateUserParams) {
     try {
-      const params = httpRequest.body 
+      const params = httpRequest.body as Partial<ICreateUserParams>
       const userId = httpRequest.params.userId
 
       await updateUserSchema.parseAsync(params)
