@@ -15,6 +15,7 @@ export const makeCreateUserController = () => {
   )
 
   const createUserController = new CreateUserController(createUserUseCase)
+
   return createUserController
 }
 
@@ -28,6 +29,5 @@ export const makeUpdateUserController = () => {
   )
 
   const updateUserController = new UpdateUserController(updateUserUseCase)
-
   return updateUserController
 }

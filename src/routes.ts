@@ -17,8 +17,8 @@ router.patch(
   "/user/update/:userId",
   async (request: Request, response: Response) => {
     const updateUserController = makeUpdateUserController()
-    const { statusCode, body } = await updateUserController.execute(request)
-    console.log(statusCode, body)
+    const { statusCode, body }  = await updateUserController.execute(request)
+    
     response.status(statusCode).send(body)
   }
 )

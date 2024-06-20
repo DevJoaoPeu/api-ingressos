@@ -30,7 +30,6 @@ export class UpdateUserUseCase {
     }
 
     const updateUser = await this.updateUserRepository.execute(userId, user)
-
     return updateUser
   }
 }

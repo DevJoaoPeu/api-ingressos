@@ -7,9 +7,12 @@ export interface ICreateUserParams {
 export interface ICreateHttpRequest {
   body: ICreateUserParams
 }
+
 export interface IUpdateUserParams {
   body?: ICreateUserParams
   params: {
     userId: string
   }
 }
+
+export type ExecuteResult = { statusCode: number; body: object }
