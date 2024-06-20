@@ -1,20 +1,19 @@
-import { badRequest, serverError } from "@/erros/helpers/http"
-import { IUpdateUserParams } from "@/types/user/type"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { ICreateUserParams, IUpdateUserParams } from "@/types/user/type"
 import { UpdateUserUseCase } from "./update-user-use-case"
 import { updateUserSchema } from "@/schemas/user/user"
 import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { ZodError } from "zod"
 import { EmailAlreadyExists } from "@/erros/user/EmailAlreadyExists"
-import { ok } from "assert"
 
 export class UpdateUserController {
   constructor(private readonly updateUserUseCase: UpdateUserUseCase) {
     this.updateUserUseCase = updateUserUseCase
   }
 
-  async execute(httpRequest: IUpdateUserParams) {
+  async execute(httpRequest) {
     try {
-      const params = httpRequest.body
+      const params = httpRequest.body 
       const userId = httpRequest.params.userId
 
       await updateUserSchema.parseAsync(params)
@@ -24,8 +23,9 @@ export class UpdateUserController {
       if (!updateUser) {
         return userNotFoundResponse()
       }
-
+      
       return ok(updateUser)
+     
     } catch (error) {
       if (error instanceof ZodError) {
         return badRequest({
