@@ -27,8 +27,9 @@ export class SessionUserUseCase {
     );
 
     const user = {
-      ...isValidUser,
-      token
+      id: isValidUser.id,
+      email: isValidUser.email,
+      token,
     };
 
     return user;
