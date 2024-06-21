@@ -19,3 +19,7 @@ export interface ISessionUserParams {
   email: string
   password: string
 }
+
+export interface ISessionHttpRequest {
+  body: ISessionUserParams
+}

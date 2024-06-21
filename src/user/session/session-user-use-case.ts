@@ -1,7 +1,6 @@
 import { EmailOrPasswordIncorrect } from "@/erros/user/errors";
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository";
-import { userNotFoundResponse } from "@/erros/helpers/validation";
-import { ISessionUserParams } from "@/types/user/type";
+import { ISessionUserParams } from "@/user/type";
 import { compare } from "bcrypt";
 import { sign } from 'jsonwebtoken';
 
