@@ -4,7 +4,7 @@ import { UpdateUserUseCase } from "./update-user-use-case"
 import { updateUserSchema } from "@/schemas/user/user"
 import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { ZodError } from "zod"
-import { EmailAlreadyExists } from "@/erros/user/EmailAlreadyExists"
+import { EmailAlreadyExists } from "@/erros/user/errors"
 
 export class UpdateUserController {
   constructor(private readonly updateUserUseCase: UpdateUserUseCase) {

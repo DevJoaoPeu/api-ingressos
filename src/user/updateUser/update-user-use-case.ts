@@ -1,7 +1,7 @@
 import { ICreateUserParams } from "@/types/user/type"
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
 import { UpdateUserRepository } from "./update-user-repository"
-import { EmailAlreadyExists } from "@/erros/user/EmailAlreadyExists"
+import { EmailAlreadyExists } from "@/erros/user/errors"
 import { hash } from "bcrypt"
 
 export class UpdateUserUseCase {
