@@ -11,6 +11,19 @@ export class SessionUserUseCase {
     this.findUserByEmailRepository = findUserByEmailRepository;
   }
 
+  token(id: string, email: string){
+    const token = sign({
+      email: email
+    },
+      process.env.JWT_SECRET as string,
+    { 
+      subject: id, expiresIn: '30d' 
+    }
+  );
+
+  return token
+  }
+
   async execute(sessionUserParams: ISessionUserParams) {
     const isValidUser = await this.findUserByEmailRepository.execute(sessionUserParams.email);
 
@@ -18,17 +31,12 @@ export class SessionUserUseCase {
       throw new EmailOrPasswordIncorrect(sessionUserParams.email)
     }
 
-    const token = sign({
-        email: sessionUserParams.email
-      },
-      process.env.JWT_SECRET as string,
-      { subject: isValidUser.id, expiresIn: '30d' }
-    );
+    const tokenJwt = this.token(isValidUser.id, sessionUserParams.email)
 
     const user = {
       id: isValidUser.id,
       email: isValidUser.email,
-      token,
+      token: tokenJwt
     };
 
     return user;
