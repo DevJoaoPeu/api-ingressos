@@ -1,6 +1,7 @@
 import { Router, Request, Response } from "express"
 import {
   makeCreateUserController,
+  makeDeleteUserController,
   makeSessionUserController,
   makeUpdateUserController,
 } from "@/factories/user/user"
@@ -34,5 +35,15 @@ router.post("/user/session", async (request: Request, response: Response) => {
 
   response.status(statusCode).send(body)
 })
+
+router.delete(
+  "/user/delete/:userId",
+  async (request: Request, response: Response) => {
+    const deleteUserController = makeDeleteUserController()
+    const { statusCode, body } = await deleteUserController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
 
 export { router }

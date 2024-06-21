@@ -1,6 +1,9 @@
 import { CreateUserController } from "@/user/createUser/create-user-controller"
 import { CreateUserRepository } from "@/user/createUser/create-user-repository"
 import { CreateUserUseCase } from "@/user/createUser/create-user-use-case"
+import { DeleteUserController } from "@/user/deleteUser/delete-user-controller"
+import { DeleteUserRepository } from "@/user/deleteUser/delete-user-repository"
+import { DeleteUserUseCase } from "@/user/deleteUser/delete-user-use-case"
 import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-email-repository"
 import { SessionUserController } from "@/user/session/session-user-controller"
 import { SessionUserUseCase } from "@/user/session/session-user-use-case"
@@ -41,4 +44,13 @@ export const makeSessionUserController = () => {
   const sessionUserController = new SessionUserController(sessionUserUseCase)
 
   return sessionUserController
+}
+
+export const makeDeleteUserController = () => {
+  const deleteUserRepository = new DeleteUserRepository()
+  const deleteUserUseCase = new DeleteUserUseCase(deleteUserRepository)
+
+  const deleteUserController = new DeleteUserController(deleteUserUseCase)
+
+  return deleteUserController
 }
