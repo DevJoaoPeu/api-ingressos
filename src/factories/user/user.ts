@@ -34,7 +34,7 @@ export const makeUpdateUserController = () => {
   return updateUserController
 }
 
-export const makeUserController = () => {
+export const makeSessionUserController = () => {
   const findUserByEmailRepository = new FindUserByEmailRepository()
   const sessionUserUseCase = new SessionUserUseCase(findUserByEmailRepository)
 
