@@ -40,6 +40,6 @@ export class SessionUserUseCase {
       token
     }
 
-    return ok(user)
+    return user
   }
 }
