@@ -2,6 +2,8 @@ import { CreateUserController } from "@/user/createUser/create-user-controller"
 import { CreateUserRepository } from "@/user/createUser/create-user-repository"
 import { CreateUserUseCase } from "@/user/createUser/create-user-use-case"
 import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-email-repository"
+import { SessionUserController } from "@/user/session/session-user-controller"
+import { SessionUserUseCase } from "@/user/session/session-user-use-case"
 import { UpdateUserController } from "@/user/updateUser/update-user-controller"
 import { UpdateUserRepository } from "@/user/updateUser/update-user-repository"
 import { UpdateUserUseCase } from "@/user/updateUser/update-user-use-case"
@@ -30,4 +32,13 @@ export const makeUpdateUserController = () => {
 
   const updateUserController = new UpdateUserController(updateUserUseCase)
   return updateUserController
+}
+
+export const makeUserController = () => {
+  const findUserByEmailRepository = new FindUserByEmailRepository()
+  const sessionUserUseCase = new SessionUserUseCase(findUserByEmailRepository)
+
+  const sessionUserController = new SessionUserController(sessionUserUseCase)
+
+  return sessionUserController
 }
