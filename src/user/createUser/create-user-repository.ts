@@ -1,4 +1,4 @@
-import { ICreateUserParams } from "@/types/user/type"
+import { ICreateUserParams } from "@/user/type"
 import { prisma } from "@/prisma/PrismaClient/prisma"
 
 export class CreateUserRepository {
