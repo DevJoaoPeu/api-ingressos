@@ -15,4 +15,7 @@ export interface IUpdateUserParams {
   }
 }
 
-export type ExecuteResult = { statusCode: number; body: object }
+export interface ISessionUserParams {
+  email: string
+  password: string
+}
