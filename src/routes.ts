@@ -1,9 +1,10 @@
 import { Router, Request, Response } from "express"
 import {
   makeCreateUserController,
+  makeSessionUserController,
   makeUpdateUserController,
 } from "@/factories/user/user"
-import { ICreateUserParams } from "./types/user/type"
+import { ICreateUserParams } from "./user/type"
 
 const router = Router()
 
@@ -26,5 +27,12 @@ router.patch(
     response.status(statusCode).send(body)
   }
 )
+
+router.post("/user/session", async (request: Request, response: Response) => {
+  const sessionUserController = makeSessionUserController()
+  const { statusCode, body } = await sessionUserController.execute(request)
+
+  response.status(statusCode).send(body)
+})
 
 export { router }
