@@ -4,7 +4,7 @@ import { CreateEventUseCase } from "./create-event-use-case"
 import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { ZodError } from "zod"
 
-export class createEventController {
+export class CreateEventController {
   constructor(private readonly createEventUseCase: CreateEventUseCase) {
     this.createEventUseCase = createEventUseCase
   }
