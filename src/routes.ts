@@ -2,10 +2,11 @@ import { Router, Request, Response } from "express"
 import {
   makeCreateUserController,
   makeDeleteUserController,
+  makeFindUserByIdController,
   makeSessionUserController,
   makeUpdateUserController,
 } from "@/factories/user/user"
-import { ICreateUserParams } from "./user/type"
+import { ICreateUserParams, IUserByIdParams } from "./user/type"
 
 const router = Router()
 
@@ -38,9 +39,25 @@ router.post("/user/session", async (request: Request, response: Response) => {
 
 router.delete(
   "/user/delete/:userId",
-  async (request: Request, response: Response) => {
+  async (
+    request: Request<{ userId: string }, IUserByIdParams>,
+    response: Response
+  ) => {
     const deleteUserController = makeDeleteUserController()
     const { statusCode, body } = await deleteUserController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/user/find/:userId",
+  async (
+    request: Request<{ userId: string }, IUserByIdParams>,
+    response: Response
+  ) => {
+    const findUserByIdController = makeFindUserByIdController()
+    const { statusCode, body } = await findUserByIdController.execute(request)
 
     response.status(statusCode).send(body)
   }
