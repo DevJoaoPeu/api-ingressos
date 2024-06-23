@@ -7,6 +7,7 @@ import {
   makeUpdateUserController,
 } from "@/factories/user/user"
 import { ICreateUserParams, IUserByIdParams } from "./user/type"
+import { makeCreateEventController } from "./factories/event/event"
 
 const router = Router()
 
@@ -62,5 +63,13 @@ router.get(
     response.status(statusCode).send(body)
   }
 )
+
+router.post("/event/create", async (request: Request, response: Response) => {
+  const createEventController = makeCreateEventController()
+
+  const { statusCode, body } = await createEventController.execute(request)
+
+  response.status(statusCode).send(body)
+})
 
 export { router }
