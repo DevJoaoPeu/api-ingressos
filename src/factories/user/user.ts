@@ -5,6 +5,9 @@ import { DeleteUserController } from "@/user/deleteUser/delete-user-controller"
 import { DeleteUserRepository } from "@/user/deleteUser/delete-user-repository"
 import { DeleteUserUseCase } from "@/user/deleteUser/delete-user-use-case"
 import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-email-repository"
+import { FindUserByIdController } from "@/user/findUserById/find-user-by-id-controller"
+import { FindUserByIdRepository } from "@/user/findUserById/find-user-by-id-repository"
+import { FindUserByIdUseCase } from "@/user/findUserById/find-user-by-id-use-case"
 import { SessionUserController } from "@/user/session/session-user-controller"
 import { SessionUserUseCase } from "@/user/session/session-user-use-case"
 import { UpdateUserController } from "@/user/updateUser/update-user-controller"
@@ -53,4 +56,13 @@ export const makeDeleteUserController = () => {
   const deleteUserController = new DeleteUserController(deleteUserUseCase)
 
   return deleteUserController
+}
+
+export const makeFindUserByIdController = () => {
+  const findUserByIdRepository = new FindUserByIdRepository()
+  const findUserByIdUseCase = new FindUserByIdUseCase(findUserByIdRepository)
+
+  const findUserByIdController = new FindUserByIdController(findUserByIdUseCase)
+
+  return findUserByIdController
 }
