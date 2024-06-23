@@ -23,3 +23,8 @@ export interface ISessionUserParams {
 export interface ISessionHttpRequest {
   body: ISessionUserParams
 }
+export interface IDeleteUserParams {
+  params: {
+    userId: string
+  }
+}
