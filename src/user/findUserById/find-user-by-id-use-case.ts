@@ -6,7 +6,7 @@ export class FindUserByIdUseCase {
   }
 
   async execute(userId: string) {
-    const user = this.findUserByIdRepository.execute(userId)
+    const user = await this.findUserByIdRepository.execute(userId)
 
     return user
   }
