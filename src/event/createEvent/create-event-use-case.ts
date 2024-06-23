@@ -1,8 +1,7 @@
 import { FindUserByIdRepository } from "@/user/findUserById/find-user-by-id-repository"
 import { ICreateEventParams } from "../types"
 import { CreateEventRepository } from "./create-event-repository"
-import { badRequest } from "@/erros/helpers/http"
-import { userNotFoundResponse } from "@/erros/helpers/validation"
+import { DateInvalid, IdNotFound } from "@/erros/event/errors"
 
 export class CreateEventUseCase {
   constructor(
@@ -17,13 +16,11 @@ export class CreateEventUseCase {
     )
 
     if (!findUserId) {
-      return userNotFoundResponse()
+      throw new IdNotFound()
     }
 
-    if (createEventParams.dtEnd > createEventParams.dtStart) {
-      badRequest({
-        message: "End date cannot be greater than start date",
-      })
+    if (createEventParams.dtEnd <= createEventParams.dtStart) {
+      throw new DateInvalid()
     }
 
     const event = await this.createEventRepository.execute(createEventParams)
