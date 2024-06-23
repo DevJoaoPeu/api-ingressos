@@ -21,13 +21,13 @@ export class SessionUserController {
     } catch (error) {
       if (error instanceof ZodError) {
         return badRequest({
-            message: error.errors[0].message
+          message: error.errors[0].message,
         })
       }
 
       if (error instanceof EmailOrPasswordIncorrect) {
         return badRequest({
-            message: error.message
+          message: error.message,
         })
       }
       console.error(error)

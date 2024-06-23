@@ -11,4 +11,3 @@ export class EmailOrPasswordIncorrect extends Error {
     this.name = "EmailOrPasswordIncorrect"
   }
 }
-
