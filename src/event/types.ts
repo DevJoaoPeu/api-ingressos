@@ -5,3 +5,7 @@ export interface ICreateEventParams {
   dtEnd: Date
   location: string
 }
+
+export interface IEventHttpRequest {
+  body: ICreateEventParams
+}
