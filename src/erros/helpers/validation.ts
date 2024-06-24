@@ -12,3 +12,8 @@ export const invalidIdResponse = () =>
   badRequest({
     message: "Id invalid. Please provide a valid one",
   })
+
+export const eventNotFoundResponse = () =>
+  notFound({
+    message: "Event not found",
+  })
