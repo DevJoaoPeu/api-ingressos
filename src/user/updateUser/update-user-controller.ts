@@ -1,5 +1,5 @@
 import { badRequest, ok, serverError } from "@/erros/helpers/http"
-import { ICreateUserParams, IUpdateUserParams } from "@/types/user/type"
+import { ICreateUserParams, IUpdateUserParams } from "@/user/type"
 import { UpdateUserUseCase } from "./update-user-use-case"
 import { updateUserSchema } from "@/schemas/user/user"
 import { userNotFoundResponse } from "@/erros/helpers/validation"
