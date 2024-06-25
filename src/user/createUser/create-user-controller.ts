@@ -1,7 +1,7 @@
 import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { EmailAlreadyExists } from "@/erros/user/errors"
 import { createUserSchema } from "@/schemas/user/user"
-import { ICreateHttpRequest } from "@/types/user/type"
+import { ICreateHttpRequest } from "@/user/type"
 import { CreateUserUseCase } from "@/user/createUser/create-user-use-case"
 import { ZodError } from "zod"
 

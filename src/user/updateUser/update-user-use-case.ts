@@ -1,4 +1,4 @@
-import { ICreateUserParams } from "@/types/user/type"
+import { ICreateUserParams } from "@/user/type"
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
 import { UpdateUserRepository } from "./update-user-repository"
 import { EmailAlreadyExists } from "@/erros/user/errors"
