@@ -11,6 +11,7 @@ import {
   makeCreateEventController,
   makeFindAllEventsByUserIdController,
   makeFindEventByIdController,
+  makeUpdateEventController,
 } from "./factories/event/event"
 import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
@@ -108,6 +109,20 @@ router.get(
     const findEventByIdController = makeFindEventByIdController()
 
     const { statusCode, body } = await findEventByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.post(
+  "/event/update/:eventId",
+  async (
+    request: Request<{ eventId: string }, IEventByIdParams>,
+    response: Response
+  ) => {
+    const updateEventController = makeUpdateEventController()
+
+    const { statusCode, body } = await updateEventController.execute(request)
 
     response.status(statusCode).send(body)
   }
