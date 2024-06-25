@@ -1,7 +1,10 @@
 import { ok, serverError } from "@/erros/helpers/http"
 import { IEventByIdParams } from "../types"
 import { FindEventByIdUseCase } from "./find-event-by-id-use-case"
-import { eventNotFoundResponse } from "@/erros/helpers/validation"
+import {
+  checkIfIdIsValid,
+  eventNotFoundResponse,
+} from "@/erros/helpers/validation"
 
 export class FindEventByIdController {
   constructor(private readonly findEventByIdUseCase: FindEventByIdUseCase) {
@@ -10,11 +13,17 @@ export class FindEventByIdController {
 
   async execute(httpRequest: IEventByIdParams) {
     try {
-      const params = httpRequest.params.userId
+      const params = httpRequest.params.eventId
+
+      const checkId = checkIfIdIsValid(params)
+
+      if (!checkId) {
+        return eventNotFoundResponse()
+      }
 
       const event = await this.findEventByIdUseCase.execute(params)
 
-      if (!params) {
+      if (!event) {
         return eventNotFoundResponse()
       }
 
