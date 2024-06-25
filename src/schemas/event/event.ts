@@ -40,3 +40,5 @@ export const createEventSchema = z.object({
       message: "location is required",
     }),
 })
+
+export const updateEventSchema = createEventSchema.partial().strict()
