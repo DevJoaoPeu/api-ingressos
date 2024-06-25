@@ -1,3 +1,4 @@
+import { NotAuthorized } from "@/erros/helpers/validation"
 import { NextFunction, Request, Response } from "express"
 import { verify } from "jsonwebtoken"
 
@@ -25,6 +26,6 @@ export const isAuthenticated = (
 
     return next()
   } catch (error) {
-    return response.status(401).end()
+    throw new NotAuthorized()
   }
 }

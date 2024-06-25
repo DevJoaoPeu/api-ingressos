@@ -13,6 +13,7 @@ import {
   makeFindEventByIdController,
 } from "./factories/event/event"
 import { IEventByIdParams } from "./event/types"
+import { isAuthenticated } from "./middlewares"
 
 const router = Router()
 
@@ -69,13 +70,17 @@ router.get(
   }
 )
 
-router.post("/event/create", async (request: Request, response: Response) => {
-  const createEventController = makeCreateEventController()
+router.post(
+  "/event/create",
+  isAuthenticated,
+  async (request: Request, response: Response) => {
+    const createEventController = makeCreateEventController()
 
-  const { statusCode, body } = await createEventController.execute(request)
+    const { statusCode, body } = await createEventController.execute(request)
 
-  response.status(statusCode).send(body)
-})
+    response.status(statusCode).send(body)
+  }
+)
 
 router.get(
   "/event/findAll/:userId",

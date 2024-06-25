@@ -17,3 +17,10 @@ export const eventNotFoundResponse = () =>
   notFound({
     message: "Event not found",
   })
+
+export class NotAuthorized extends Error {
+  constructor() {
+    super(`Not Authorized`)
+    this.name = "NotAuthorized"
+  }
+}
