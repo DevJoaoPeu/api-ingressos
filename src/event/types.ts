@@ -9,3 +9,9 @@ export interface ICreateEventParams {
 export interface IEventHttpRequest {
   body: ICreateEventParams
 }
+
+export interface IEventByIdParams {
+  params: {
+    userId: string
+  }
+}

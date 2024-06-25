@@ -7,7 +7,11 @@ import {
   makeUpdateUserController,
 } from "@/factories/user/user"
 import { ICreateUserParams, IUserByIdParams } from "./user/type"
-import { makeCreateEventController } from "./factories/event/event"
+import {
+  makeCreateEventController,
+  makeFindAllEventsByUserIdController,
+} from "./factories/event/event"
+import { IEventByIdParams } from "./event/types"
 
 const router = Router()
 
@@ -71,5 +75,22 @@ router.post("/event/create", async (request: Request, response: Response) => {
 
   response.status(statusCode).send(body)
 })
+
+router.get(
+  "/event/findAll/:userId",
+  async (
+    request: Request<{ userId: string }, IEventByIdParams>,
+    response: Response
+  ) => {
+    const findAllEventsByUserIdController =
+      makeFindAllEventsByUserIdController()
+
+    const { statusCode, body } = await findAllEventsByUserIdController.execute(
+      request
+    )
+
+    response.status(statusCode).send(body)
+  }
+)
 
 export { router }
