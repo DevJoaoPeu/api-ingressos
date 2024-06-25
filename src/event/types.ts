@@ -15,3 +15,7 @@ export interface IEventByIdParams {
     eventId: string
   }
 }
+
+export interface IUpdateEventParams
+  extends IEventHttpRequest,
+    IEventByIdParams {}
