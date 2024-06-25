@@ -12,6 +12,6 @@ export interface IEventHttpRequest {
 
 export interface IEventByIdParams {
   params: {
-    userId: string
+    eventId: string
   }
 }
