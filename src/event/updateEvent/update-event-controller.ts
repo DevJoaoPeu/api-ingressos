@@ -4,6 +4,7 @@ import { UpdateEventUseCase } from "./update-event-use-case"
 import { updateEventSchema } from "@/schemas/event/event"
 import { eventNotFoundResponse } from "@/erros/helpers/validation"
 import { ZodError } from "zod"
+import { DateInvalid } from "@/erros/event/errors"
 
 export class UpdateEventController {
   constructor(private readonly updateEventUseCase: UpdateEventUseCase) {
@@ -27,6 +28,12 @@ export class UpdateEventController {
       if (error instanceof ZodError) {
         return badRequest({
           message: error.errors[0].message,
+        })
+      }
+
+      if (error instanceof DateInvalid) {
+        return badRequest({
+          message: error.message,
         })
       }
       console.error(error)
