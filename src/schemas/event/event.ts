@@ -13,6 +13,9 @@ export const createEventSchema = z.object({
     .string({
       message: "userId is required",
     })
+    .uuid({
+      message: "invalid uuid",
+    })
     .trim()
     .min(1, {
       message: "userId is required",
