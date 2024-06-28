@@ -119,7 +119,7 @@ router.get(
   }
 )
 
-router.post(
+router.patch(
   "/event/update/:eventId",
   isAuthenticated,
   async (
