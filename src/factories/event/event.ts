@@ -52,7 +52,12 @@ export const makeFindEventByIdController = () => {
 
 export const makeUpdateEventController = () => {
   const updateEventRepository = new UpdateEventRepository()
-  const updateEventUseCase = new UpdateEventUseCase(updateEventRepository)
+  const findEventByIdRepository = new FindEventByIdRepository()
+
+  const updateEventUseCase = new UpdateEventUseCase(
+    updateEventRepository,
+    findEventByIdRepository
+  )
 
   const updateEventController = new UpdateEventController(updateEventUseCase)
 

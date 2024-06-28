@@ -27,6 +27,7 @@ router.post("/user/register", async (request: Request, response: Response) => {
 
 router.patch(
   "/user/update/:userId",
+  isAuthenticated,
   async (
     request: Request<{ userId: string }, ICreateUserParams>,
     response: Response
@@ -47,6 +48,7 @@ router.post("/user/session", async (request: Request, response: Response) => {
 
 router.delete(
   "/user/delete/:userId",
+  isAuthenticated,
   async (
     request: Request<{ userId: string }, IUserByIdParams>,
     response: Response
@@ -60,6 +62,7 @@ router.delete(
 
 router.get(
   "/user/find/:userId",
+  isAuthenticated,
   async (
     request: Request<{ userId: string }, IUserByIdParams>,
     response: Response
@@ -85,6 +88,7 @@ router.post(
 
 router.get(
   "/event/findAll/:userId",
+  isAuthenticated,
   async (
     request: Request<{ userId: string }, IUserByIdParams>,
     response: Response
@@ -102,6 +106,7 @@ router.get(
 
 router.get(
   "/event/findOne/:eventId",
+  isAuthenticated,
   async (
     request: Request<{ eventId: string }, IEventByIdParams>,
     response: Response
@@ -116,6 +121,7 @@ router.get(
 
 router.post(
   "/event/update/:eventId",
+  isAuthenticated,
   async (
     request: Request<{ eventId: string }, IEventByIdParams>,
     response: Response
