@@ -16,7 +16,7 @@ export class DeleteEventController {
 
       const idIsValid = checkIfIdIsValid(userId)
 
-      if (idIsValid) {
+      if (!idIsValid) {
         return invalidIdResponse()
       }
 
