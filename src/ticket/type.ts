@@ -1,0 +1,8 @@
+export interface ICreateTicketParams {
+  eventId: string
+  qtTicket: number
+  ownerId?: string
+  type: "PISTA" | "VIP"
+  price: number
+  dtAvailability: Date
+}
