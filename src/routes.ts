@@ -9,6 +9,7 @@ import {
 import { ICreateUserParams, IUserByIdParams } from "./user/type"
 import {
   makeCreateEventController,
+  makeDeleteEventController,
   makeFindAllEventsByUserIdController,
   makeFindEventByIdController,
   makeUpdateEventController,
@@ -129,6 +130,21 @@ router.patch(
     const updateEventController = makeUpdateEventController()
 
     const { statusCode, body } = await updateEventController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.delete(
+  "/event/delete/:eventId",
+  isAuthenticated,
+  async (
+    request: Request<{ eventId: string }, IEventByIdParams>,
+    response: Response
+  ) => {
+    const deleteEventController = makeDeleteEventController()
+
+    const { statusCode, body } = await deleteEventController.execute(request)
 
     response.status(statusCode).send(body)
   }
