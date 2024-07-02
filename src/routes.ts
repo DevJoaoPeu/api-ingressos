@@ -16,6 +16,7 @@ import {
 } from "./factories/event/event"
 import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
+import { makeCreateTicketController } from "./factories/ticket/ticket"
 
 const router = Router()
 
@@ -149,5 +150,13 @@ router.delete(
     response.status(statusCode).send(body)
   }
 )
+
+router.post("/ticket/create", async (request: Request, response: Response) => {
+  const createTicketController = makeCreateTicketController()
+
+  const { statusCode, body } = await createTicketController.execute(request)
+
+  response.status(statusCode).send(body)
+})
 
 export { router }
