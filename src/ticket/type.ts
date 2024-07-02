@@ -6,3 +6,7 @@ export interface ICreateTicketParams {
   price: number
   dtAvailability: Date
 }
+
+export interface ITicketParams {
+  body: ICreateTicketParams
+}
