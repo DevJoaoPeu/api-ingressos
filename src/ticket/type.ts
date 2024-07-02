@@ -10,3 +10,9 @@ export interface ICreateTicketParams {
 export interface ITicketParams {
   body: ICreateTicketParams
 }
+
+export interface IFindTicketParamsId {
+  params: {
+    ticketId: string
+  }
+}
