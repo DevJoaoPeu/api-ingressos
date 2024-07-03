@@ -16,7 +16,11 @@ import {
 } from "./factories/event/event"
 import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
-import { makeCreateTicketController } from "./factories/ticket/ticket"
+import {
+  makeCreateTicketController,
+  makeFindTicketByIdController,
+} from "./factories/ticket/ticket"
+import { IFindTicketParamsId } from "./ticket/type"
 
 const router = Router()
 
@@ -158,5 +162,19 @@ router.post("/ticket/create", async (request: Request, response: Response) => {
 
   response.status(statusCode).send(body)
 })
+
+router.get(
+  "/ticket/find/:ticketId",
+  async (
+    request: Request<{ ticketId: string }, IFindTicketParamsId>,
+    response: Response
+  ) => {
+    const findTicketByIdController = makeFindTicketByIdController()
+
+    const { statusCode, body } = await findTicketByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
 
 export { router }

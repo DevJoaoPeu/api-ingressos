@@ -1,6 +1,7 @@
 import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-repository"
 import { ICreateTicketParams } from "../type"
 import { CreateTicketRepository } from "./create-ticket-repository"
+import { EventNotFound } from "@/erros/helpers/validation"
 
 export class CreateTicketUseCase {
   constructor(
@@ -13,7 +14,7 @@ export class CreateTicketUseCase {
     )
 
     if (!event) {
-      return null
+      throw new EventNotFound()
     }
 
     const ticket = await this.createTicketRepository.execute(createTicketParams)

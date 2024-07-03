@@ -24,3 +24,15 @@ export class NotAuthorized extends Error {
     this.name = "NotAuthorized"
   }
 }
+
+export class EventNotFound extends Error {
+  constructor() {
+    super(`Event not found`)
+    this.name = "EventNotFound"
+  }
+}
+
+export const ticketNotFoundResponse = () =>
+  notFound({
+    message: "Ticket not found",
+  })

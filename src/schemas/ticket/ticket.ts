@@ -10,9 +10,6 @@ export const createTicketSchema = z.object({
     .string({
       message: "eventId is required",
     })
-    .uuid({
-      message: "invalid uuid",
-    })
     .trim()
     .min(1, {
       message: "eventId is required",
