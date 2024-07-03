@@ -18,6 +18,7 @@ import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
 import {
   makeCreateTicketController,
+  makeFindAllTicketsByEventIdController,
   makeFindTicketByIdController,
 } from "./factories/ticket/ticket"
 import { IFindTicketParamsId } from "./ticket/type"
@@ -172,6 +173,23 @@ router.get(
     const findTicketByIdController = makeFindTicketByIdController()
 
     const { statusCode, body } = await findTicketByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/ticket/findAll/:eventId",
+  async (
+    request: Request<{ eventId: string }, IEventByIdParams>,
+    response: Response
+  ) => {
+    const findTicketsByEventIdController =
+      makeFindAllTicketsByEventIdController()
+
+    const { statusCode, body } = await findTicketsByEventIdController.execute(
+      request
+    )
 
     response.status(statusCode).send(body)
   }
