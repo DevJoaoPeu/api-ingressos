@@ -1,9 +1,6 @@
 import { ok, serverError } from "@/erros/helpers/http"
 import { IFindTicketParamsId } from "../type"
-import {
-  checkIfIdIsValid,
-  ticketNotFoundResponse,
-} from "@/erros/helpers/validation"
+import { ticketNotFoundResponse } from "@/erros/helpers/validation"
 import { FindTicketByIdUseCase } from "./find-ticket-by-id-use-case"
 
 export class FindTicketByIdController {
@@ -12,13 +9,11 @@ export class FindTicketByIdController {
     try {
       const ticketId = httpRequest.params.ticketId
 
-      const isValidId = checkIfIdIsValid(ticketId)
+      const ticket = await this.findTicketByIdUseCase.execute(ticketId)
 
-      if (!isValidId) {
+      if (!ticket) {
         return ticketNotFoundResponse()
       }
-
-      const ticket = await this.findTicketByIdUseCase.execute(ticketId)
 
       return ok(ticket)
     } catch (error) {
