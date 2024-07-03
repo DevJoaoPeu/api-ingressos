@@ -1,7 +1,8 @@
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { CreateTicketUseCase } from "./create-ticket-use-case"
 import { createTicketSchema } from "@/schemas/ticket/ticket"
 import { ITicketParams } from "../type"
+import { ZodError } from "zod"
 
 export class CreateTicketController {
   constructor(private readonly createTicketUseCase: CreateTicketUseCase) {}
@@ -19,6 +20,11 @@ export class CreateTicketController {
 
       return ok(ticket)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.message,
+        })
+      }
       console.error(error)
       return serverError()
     }
