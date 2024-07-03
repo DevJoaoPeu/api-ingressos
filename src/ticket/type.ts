@@ -1,8 +1,12 @@
+enum TicketType {
+  PISTA,
+  VIP,
+}
 export interface ICreateTicketParams {
   eventId: string
   qtTicket: number
   ownerId?: string
-  type: "PISTA" | "VIP"
+  type: TicketType
   price: number
   dtAvailability: Date
 }
