@@ -11,6 +11,12 @@ export class CreateTicketController {
     try {
       const params = httpRequest.body
 
+      if (params.qtTicket > 5) {
+        return badRequest({
+          message: "For now, the maximum number of tickets you can create is 5",
+        })
+      }
+
       await createTicketSchema.parseAsync(params)
 
       const ticket = await this.createTicketUseCase.execute(params)
@@ -24,7 +30,7 @@ export class CreateTicketController {
       }
       if (error instanceof ZodError) {
         return badRequest({
-          message: error.message,
+          message: error.errors[0].message,
         })
       }
       console.error(error)
