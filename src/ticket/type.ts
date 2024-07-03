@@ -20,3 +20,12 @@ export interface IFindTicketParamsId {
     ticketId: string
   }
 }
+
+export interface IFindAllTicketId {
+  eventId: string
+  type: TicketType
+}
+
+export interface IParamsFindAllTicketId {
+  params: IFindAllTicketId
+}
