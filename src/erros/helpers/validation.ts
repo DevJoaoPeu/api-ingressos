@@ -24,3 +24,8 @@ export class NotAuthorized extends Error {
     this.name = "NotAuthorized"
   }
 }
+
+export const ticketNotFoundResponse = () =>
+  notFound({
+    message: "Ticket not found",
+  })
