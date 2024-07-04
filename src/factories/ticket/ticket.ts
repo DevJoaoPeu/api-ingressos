@@ -10,10 +10,7 @@ import { FindTicketByIdRepository } from "@/ticket/findTicketById/find-ticket-by
 import { FindTicketByIdUseCase } from "@/ticket/findTicketById/find-ticket-by-id-use-case"
 import { FindTicketByTypeController } from "@/ticket/findTicketByType/find-ticket-by-type-controller"
 import { FindTicketByTypeRepository } from "@/ticket/findTicketByType/find-ticket-by-type-repository"
-import {
-  FindTicketByTypeUseCase,
-  FindTicketByTypeUseCase,
-} from "@/ticket/findTicketByType/find-ticket-by-type-use-case"
+import { FindTicketByTypeUseCase } from "@/ticket/findTicketByType/find-ticket-by-type-use-case"
 
 export const makeCreateTicketController = () => {
   const createTicketRepository = new CreateTicketRepository()
