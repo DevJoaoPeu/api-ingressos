@@ -20,8 +20,9 @@ import {
   makeCreateTicketController,
   makeFindAllTicketsByEventIdController,
   makeFindTicketByIdController,
+  makeFindTicketByTypeController,
 } from "./factories/ticket/ticket"
-import { IFindTicketParamsId } from "./ticket/type"
+import { IFindTicketParamsId, IParamsFindAllTicketId } from "./ticket/type"
 
 const router = Router()
 
@@ -188,6 +189,22 @@ router.get(
       makeFindAllTicketsByEventIdController()
 
     const { statusCode, body } = await findTicketsByEventIdController.execute(
+      request
+    )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/ticket/findTicket/:eventId/:type",
+  async (
+    request: Request<{ eventId: string; type: string }, IParamsFindAllTicketId>,
+    response: Response
+  ) => {
+    const findTicketByTypeController = makeFindTicketByTypeController()
+
+    const { statusCode, body } = await findTicketByTypeController.execute(
       request
     )
 
