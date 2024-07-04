@@ -8,6 +8,12 @@ import { FindAllTicketsByEventIdUseCase } from "@/ticket/findAllTicketsByEventId
 import { FindTicketByIdController } from "@/ticket/findTicketById/find-ticket-by-id-controller"
 import { FindTicketByIdRepository } from "@/ticket/findTicketById/find-ticket-by-id-repository"
 import { FindTicketByIdUseCase } from "@/ticket/findTicketById/find-ticket-by-id-use-case"
+import { FindTicketByTypeController } from "@/ticket/findTicketByType/find-ticket-by-type-controller"
+import { FindTicketByTypeRepository } from "@/ticket/findTicketByType/find-ticket-by-type-repository"
+import {
+  FindTicketByTypeUseCase,
+  FindTicketByTypeUseCase,
+} from "@/ticket/findTicketByType/find-ticket-by-type-use-case"
 
 export const makeCreateTicketController = () => {
   const createTicketRepository = new CreateTicketRepository()
@@ -47,4 +53,18 @@ export const makeFindAllTicketsByEventIdController = () => {
     new FindAllTicketsByEventIdController(findAllTicketsByEventIdUseCase)
 
   return findAllTicketsByEventIdController
+}
+
+export const makeFindTicketByTypeController = () => {
+  const findTicketByTypeRepository = new FindTicketByTypeRepository()
+
+  const findTicketByTypeUseCase = new FindTicketByTypeUseCase(
+    findTicketByTypeRepository
+  )
+
+  const findTicketByTypeController = new FindTicketByTypeController(
+    findTicketByTypeUseCase
+  )
+
+  return findTicketByTypeController
 }
