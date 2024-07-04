@@ -1,10 +1,13 @@
 import { prisma } from "@/prisma/PrismaClient/prisma"
-import { TicketType } from "@prisma/client"
+import { IFindAllTicketId } from "../type"
 
 export class FindTicketByTypeRepository {
-  async execute(type: TicketType) {
+  async execute(findTicketsParams: IFindAllTicketId) {
     return await prisma.ticket.findMany({
-      where: { type },
+      where: {
+        type: findTicketsParams.type,
+        eventId: findTicketsParams.eventId,
+      },
     })
   }
 }
