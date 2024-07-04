@@ -38,3 +38,16 @@ export const createTicketSchema = z.object({
       message: "price is required",
     }),
 })
+
+export const findTicketsSchema = z.object({
+  type: TipoIngressoEnum,
+  eventId: z
+    .string({
+      message: "eventId is required",
+    })
+    .uuid()
+    .trim()
+    .min(1, {
+      message: "eventId is required",
+    }),
+})
