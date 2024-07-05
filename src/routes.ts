@@ -21,6 +21,7 @@ import {
   makeFindAllTicketsByEventIdController,
   makeFindTicketByIdController,
   makeFindTicketByTypeController,
+  makeFindTicketByUserIdController,
 } from "./factories/ticket/ticket"
 import {
   IFindTicketParamsId,
@@ -212,6 +213,22 @@ router.get(
     const findTicketByTypeController = makeFindTicketByTypeController()
 
     const { statusCode, body } = await findTicketByTypeController.execute(
+      request
+    )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/ticket/user/findTickets/:userId",
+  async (
+    request: Request<{ userId: string }, IUserByIdParams>,
+    response: Response
+  ) => {
+    const findTicketByUserIdController = makeFindTicketByUserIdController()
+
+    const { statusCode, body } = await findTicketByUserIdController.execute(
       request
     )
 
