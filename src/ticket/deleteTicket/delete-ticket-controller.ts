@@ -1,6 +1,6 @@
 import { IEventByIdParams } from "@/event/types"
 import { DeleteTicketUseCase } from "./delete-ticket-use-case"
-import { serverError } from "@/erros/helpers/http"
+import { ok, serverError } from "@/erros/helpers/http"
 
 export class DeleteTicketController {
   constructor(private readonly deleteTicketUseCase: DeleteTicketUseCase) {}
@@ -10,7 +10,7 @@ export class DeleteTicketController {
 
       const deleteTickets = await this.deleteTicketUseCase.execute(params)
 
-      return deleteTickets
+      return ok(deleteTickets)
     } catch (error) {
       console.error(error)
       return serverError()
