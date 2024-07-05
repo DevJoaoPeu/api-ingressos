@@ -2,6 +2,8 @@ import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-
 import { CreateTicketController } from "@/ticket/createTicket/create-ticket-controller"
 import { CreateTicketRepository } from "@/ticket/createTicket/create-ticket-repository"
 import { CreateTicketUseCase } from "@/ticket/createTicket/create-ticket-use-case"
+import { DeleteTicketController } from "@/ticket/deleteTicket/delete-ticket-controller"
+import { DeleteTicketUseCase } from "@/ticket/deleteTicket/delete-ticket-use-case"
 import { FindAllTicketsByEventIdController } from "@/ticket/findAllTicketsByEventId/find-all-tickets-by-eventId-controller"
 import { FindAllTicketsByEventIdRepository } from "@/ticket/findAllTicketsByEventId/find-all-tickets-by-eventId-repository"
 import { FindAllTicketsByEventIdUseCase } from "@/ticket/findAllTicketsByEventId/find-all-tickets-by-eventId-use-case"
@@ -80,4 +82,14 @@ export const makeFindTicketByUserIdController = () => {
   )
 
   return findTicketByUserIdController
+}
+
+export const makeDeleteTicketController = () => {
+  const deleteTicketsUseCase = new DeleteTicketUseCase()
+
+  const deleteTicketsController = new DeleteTicketController(
+    deleteTicketsUseCase
+  )
+
+  return deleteTicketsController
 }
