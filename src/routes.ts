@@ -237,7 +237,7 @@ router.get(
   }
 )
 
-router.get(
+router.delete(
   "/ticket/delete/:eventId",
   async (
     request: Request<{ eventId: string }, IEventByIdParams>,
