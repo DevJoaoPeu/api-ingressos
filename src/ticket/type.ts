@@ -1,4 +1,4 @@
-enum TicketType {
+export enum TicketType {
   PISTA,
   VIP,
 }
