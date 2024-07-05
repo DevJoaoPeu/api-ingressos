@@ -18,6 +18,7 @@ import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
 import {
   makeCreateTicketController,
+  makeDeleteTicketController,
   makeFindAllTicketsByEventIdController,
   makeFindTicketByIdController,
   makeFindTicketByTypeController,
@@ -231,6 +232,20 @@ router.get(
     const { statusCode, body } = await findTicketByUserIdController.execute(
       request
     )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/ticket/delete/:eventId",
+  async (
+    request: Request<{ eventId: string }, IEventByIdParams>,
+    response: Response
+  ) => {
+    const deleteTicketsController = makeDeleteTicketController()
+
+    const { statusCode, body } = await deleteTicketsController.execute(request)
 
     response.status(statusCode).send(body)
   }
