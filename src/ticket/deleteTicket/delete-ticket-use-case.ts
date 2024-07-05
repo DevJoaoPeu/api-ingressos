@@ -1,11 +1,14 @@
-import { DeleteTicketsRepository } from "./delete-ticket-repository"
+import { prisma } from "@/prisma/PrismaClient/prisma"
 
 export class DeleteTicketUseCase {
-  constructor(
-    private readonly deleteTicketsRepository: DeleteTicketsRepository
-  ) {}
   async execute(eventId: string) {
-    const deleteTickets = await this.deleteTicketsRepository.execute(eventId)
+    const deleteTickets = await prisma.ticket.deleteMany({
+      where: {
+        ownerId: null,
+        eventId,
+      },
+    })
+
     return deleteTickets
   }
 }
