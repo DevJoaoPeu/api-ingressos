@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Api venda de ingressos",
-    "description": "Essa api tem como objetivo de venda e compra de ingressos",
+    "title": "API de venda de ingressos",
+    "description": "Esta API tem como objetivo a venda e compra de ingressos.",
     "contact": {
       "email": "joaopedroprog.contato@gmail.com"
     },
@@ -91,6 +91,53 @@
         "responses": {
           "200": {
             "description": "Usuário deletado com sucesso"
+          }
+        }
+      }
+    },
+    "/user/session": {
+      "post": {
+        "summary": "Login de usuário",
+        "description": "Rota para login de usuário",
+        "tags": ["User"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SessionUserParams"
+              },
+              "examples": {
+                "user": {
+                  "summary": "Exemplo de login de usuário",
+                  "value": {
+                    "email": "joao@teste.com",
+                    "password": "123456"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Login bem-sucedido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "jwt_token_aqui"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas"
           }
         }
       }
@@ -432,10 +479,6 @@
       "User": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "name": {
             "type": "string"
           },
@@ -445,20 +488,12 @@
           },
           "password": {
             "type": "string"
-          },
-          "dtCreation": {
-            "type": "string",
-            "format": "date-time"
           }
         }
       },
       "Event": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "name": {
             "type": "string"
           },
@@ -482,10 +517,6 @@
       "Ticket": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid"
-          },
           "eventId": {
             "type": "string",
             "format": "uuid"
@@ -508,6 +539,17 @@
           "dtAvailability": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "SessionUserParams": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
           }
         }
       }
