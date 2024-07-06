@@ -11,6 +11,8 @@
     "paths": {
       "@/*": ["*"]
     },
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   }
 }

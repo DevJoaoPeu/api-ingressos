@@ -24,12 +24,8 @@ import {
   makeFindTicketByTypeController,
   makeFindTicketByUserIdController,
 } from "./factories/ticket"
-import {
-  IFindTicketParamsId,
-  IParamsFindAllTicketId,
-  TicketType,
-} from "./ticket/type"
-import { User } from "@prisma/client"
+import { IFindTicketParamsId, IParamsFindAllTicketId } from "./ticket/type"
+import { TicketType, User } from "@prisma/client"
 
 const router = Router()
 
