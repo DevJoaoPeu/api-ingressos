@@ -1,7 +1,7 @@
 import { badRequest, ok, serverError } from "@/erros/http"
 import { IUpdateEventParams } from "../types"
 import { UpdateEventUseCase } from "./update-event-use-case"
-import { updateEventSchema } from "@/schemas/event/event"
+import { updateEventSchema } from "@/schemas/event"
 import { eventNotFoundResponse } from "@/erros/validation"
 import { ZodError } from "zod"
 import { DateInvalid } from "@/erros/errors"

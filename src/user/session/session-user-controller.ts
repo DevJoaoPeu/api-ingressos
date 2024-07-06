@@ -1,8 +1,8 @@
 import { badRequest, ok, serverError } from "@/erros/http"
 import { SessionUserUseCase } from "./session-user-use-case"
-import { sessionUserSchema } from "@/schemas/user/user"
+import { sessionUserSchema } from "@/schemas/user"
 import { ZodError } from "zod"
-import { EmailOrPasswordIncorrect } from "@/erros/user/errors"
+import { EmailOrPasswordIncorrect } from "@/erros/errors"
 import { ISessionHttpRequest } from "../type"
 
 export class SessionUserController {

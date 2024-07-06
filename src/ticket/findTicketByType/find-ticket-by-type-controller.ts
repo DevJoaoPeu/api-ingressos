@@ -1,7 +1,7 @@
 import { badRequest, ok, serverError } from "@/erros/http"
 import { FindTicketByTypeUseCase } from "./find-ticket-by-type-use-case"
 import { IParamsFindAllTicketId } from "../type"
-import { findTicketsSchema } from "@/schemas/ticket/ticket"
+import { findTicketsSchema } from "@/schemas/ticket"
 import { ZodError } from "zod"
 
 export class FindTicketByTypeController {

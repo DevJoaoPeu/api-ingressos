@@ -1,7 +1,7 @@
 import { badRequest, ok, serverError } from "@/erros/http"
 import { IUserByIdParams } from "@/user/type"
 import { FindTicketByUserIdUseCase } from "./find-tickets-by-user-id-use-case"
-import { isValidIdSchema } from "@/schemas/user/user"
+import { isValidIdSchema } from "@/schemas/user"
 import { ZodError } from "zod"
 
 export class FindTicketByUserIdController {

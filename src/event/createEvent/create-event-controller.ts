@@ -1,4 +1,4 @@
-import { createEventSchema } from "@/schemas/event/event"
+import { createEventSchema } from "@/schemas/event"
 import { IEventHttpRequest } from "../types"
 import { CreateEventUseCase } from "./create-event-use-case"
 import { badRequest, created, serverError } from "@/erros/http"

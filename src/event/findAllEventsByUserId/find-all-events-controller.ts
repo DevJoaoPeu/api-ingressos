@@ -2,7 +2,7 @@ import { badRequest, ok, serverError } from "@/erros/http"
 import { eventNotFoundResponse } from "@/erros/validation"
 import { FindAllEventsByUserIdUseCase } from "./find-all-events-use-case"
 import { IUserByIdParams } from "@/user/type"
-import { isValidIdSchema } from "@/schemas/user/user"
+import { isValidIdSchema } from "@/schemas/user"
 import { ZodError } from "zod"
 
 export class FindAllEventsByUserIdController {
