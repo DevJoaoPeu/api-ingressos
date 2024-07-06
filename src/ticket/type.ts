@@ -1,10 +1,4 @@
-import { Ticket } from "@prisma/client"
-
-export enum TicketType {
-  PISTA,
-  VIP,
-}
-
+import { Ticket, TicketType } from "@prisma/client"
 export interface ITicketParams {
   body: Ticket
 }
