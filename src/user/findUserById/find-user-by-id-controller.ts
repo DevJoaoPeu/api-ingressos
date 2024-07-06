@@ -1,4 +1,4 @@
-import { userNotFoundResponse } from "@/erros/helpers/validation"
+import { userNotFoundResponse } from "@/erros/validation"
 import { IUserByIdParams } from "../type"
 import { FindUserByIdUseCase } from "./find-user-by-id-use-case"
 import { badRequest, ok, serverError } from "@/erros/http"

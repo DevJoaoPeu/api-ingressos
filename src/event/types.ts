@@ -1,13 +1,6 @@
-export interface ICreateEventParams {
-  name: string
-  userId: string
-  dtStart: Date
-  dtEnd: Date
-  location: string
-}
-
+import { Event } from "@prisma/client"
 export interface IEventHttpRequest {
-  body: ICreateEventParams
+  body: Event
 }
 
 export interface IEventByIdParams {

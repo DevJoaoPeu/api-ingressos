@@ -1,11 +1,8 @@
 import { prisma } from "@/prisma/PrismaClient/prisma"
-import { ICreateEventParams } from "../types"
+import { Event } from "@prisma/client"
 
 export class UpdateEventRepository {
-  async execute(
-    eventId: string,
-    updateEventParams: Partial<ICreateEventParams>
-  ) {
+  async execute(eventId: string, updateEventParams: Partial<Event>) {
     try {
       return await prisma.event.update({
         where: {

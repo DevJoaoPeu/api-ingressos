@@ -1,4 +1,4 @@
-import { userNotFoundResponse } from "@/erros/helpers/validation"
+import { userNotFoundResponse } from "@/erros/validation"
 import { DeleteUserUseCase } from "./delete-user-use-case"
 import { badRequest, ok, serverError } from "@/erros/http"
 import { IUserByIdParams } from "../type"
