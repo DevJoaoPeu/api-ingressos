@@ -1,7 +1,7 @@
 import { createEventSchema } from "@/schemas/event/event"
 import { IEventHttpRequest } from "../types"
 import { CreateEventUseCase } from "./create-event-use-case"
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, created, serverError } from "@/erros/helpers/http"
 import { ZodError } from "zod"
 import { DateInvalid, IdNotFound } from "@/erros/event/errors"
 import { NotAuthorized } from "@/erros/helpers/validation"
@@ -17,7 +17,7 @@ export class CreateEventController {
 
       const event = await this.createEventUseCase.execute(params)
 
-      return ok(event)
+      return created(event)
     } catch (error) {
       if (error instanceof ZodError) {
         return badRequest({

@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, created, serverError } from "@/erros/helpers/http"
 import { EmailAlreadyExists } from "@/erros/user/errors"
 import { createUserSchema } from "@/schemas/user/user"
 import { ICreateHttpRequest } from "@/user/type"
@@ -15,7 +15,7 @@ export class CreateUserController {
 
       const createdUser = await this.createUserUseCase.execute(params)
 
-      return ok(createdUser)
+      return created(createdUser)
     } catch (error) {
       if (error instanceof ZodError) {
         return badRequest({

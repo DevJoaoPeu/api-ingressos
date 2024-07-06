@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, created, serverError } from "@/erros/helpers/http"
 import { CreateTicketUseCase } from "./create-ticket-use-case"
 import { createTicketSchema } from "@/schemas/ticket/ticket"
 import { ITicketParams } from "../type"
@@ -21,7 +21,7 @@ export class CreateTicketController {
 
       const ticket = await this.createTicketUseCase.execute(params)
 
-      return ok(ticket)
+      return created(ticket)
     } catch (error) {
       if (error instanceof EventNotFound) {
         return badRequest({
