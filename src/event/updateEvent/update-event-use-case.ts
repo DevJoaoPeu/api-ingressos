@@ -1,8 +1,8 @@
 import { DateInvalid } from "@/erros/errors"
 import { FindEventByIdRepository } from "../findEventById/find-event-by-id-repository"
-import { ICreateEventParams } from "../types"
 import { UpdateEventRepository } from "./update-event-repository"
 import { validationDate } from "../utils/validation-date"
+import { Event } from "@prisma/client"
 
 export class UpdateEventUseCase {
   constructor(
@@ -10,10 +10,7 @@ export class UpdateEventUseCase {
     private readonly findEventByIdRepository: FindEventByIdRepository
   ) {}
 
-  async execute(
-    eventId: string,
-    updateEventParams: Partial<ICreateEventParams>
-  ) {
+  async execute(eventId: string, updateEventParams: Partial<Event>) {
     const existingEvent = await this.findEventByIdRepository.execute(eventId)
 
     const validationDateParams = validationDate(

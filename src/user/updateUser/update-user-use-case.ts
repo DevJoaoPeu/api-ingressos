@@ -1,15 +1,15 @@
-import { ICreateUserParams } from "@/user/type"
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
 import { UpdateUserRepository } from "./update-user-repository"
 import { EmailAlreadyExists } from "@/erros/errors"
 import { hash } from "bcrypt"
+import { User } from "@prisma/client"
 
 export class UpdateUserUseCase {
   constructor(
     private readonly updateUserRepository: UpdateUserRepository,
     private readonly findUserByEmailRepository: FindUserByEmailRepository
   ) {}
-  async execute(userId: string, updateUserParams: Partial<ICreateUserParams>) {
+  async execute(userId: string, updateUserParams: Partial<User>) {
     if (updateUserParams.email) {
       const userWithProvidedEmail =
         await this.findUserByEmailRepository.execute(updateUserParams.email)

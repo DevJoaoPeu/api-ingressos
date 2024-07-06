@@ -1,17 +1,18 @@
 import { badRequest, ok, serverError } from "@/erros/http"
-import { ICreateUserParams, IUpdateUserParams } from "@/user/type"
+import { IUpdateUserParams } from "@/user/type"
 import { UpdateUserUseCase } from "./update-user-use-case"
 import { updateUserSchema } from "@/schemas/user/user"
-import { userNotFoundResponse } from "@/erros/helpers/validation"
+import { userNotFoundResponse } from "@/erros/validation"
 import { ZodError } from "zod"
 import { EmailAlreadyExists } from "@/erros/errors"
+import { User } from "@prisma/client"
 
 export class UpdateUserController {
   constructor(private readonly updateUserUseCase: UpdateUserUseCase) {}
 
   async execute(httpRequest: IUpdateUserParams) {
     try {
-      const params = httpRequest.body as Partial<ICreateUserParams>
+      const params = httpRequest.body as Partial<User>
       const userId = httpRequest.params.userId
 
       await updateUserSchema.parseAsync(params)

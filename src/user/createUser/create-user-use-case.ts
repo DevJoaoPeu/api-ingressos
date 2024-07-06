@@ -1,8 +1,8 @@
-import { ICreateUserParams } from "@/user/type"
 import { CreateUserRepository } from "./create-user-repository"
 import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-email-repository"
 import { EmailAlreadyExists } from "@/erros/errors"
 import { hash } from "bcrypt"
+import { User } from "@prisma/client"
 
 export class CreateUserUseCase {
   constructor(
@@ -10,7 +10,7 @@ export class CreateUserUseCase {
     private readonly findUserByEmailRepository: FindUserByEmailRepository
   ) {}
 
-  async execute(createUserParams: ICreateUserParams) {
+  async execute(createUserParams: User) {
     const userWithProvidedEmail = await this.findUserByEmailRepository.execute(
       createUserParams.email
     )

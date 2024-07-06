@@ -1,18 +1,12 @@
+import { Ticket } from "@prisma/client"
+
 export enum TicketType {
   PISTA,
   VIP,
 }
-export interface ICreateTicketParams {
-  eventId: string
-  qtTicket: number
-  ownerId?: string
-  type: TicketType
-  price: number
-  dtAvailability: Date
-}
 
 export interface ITicketParams {
-  body: ICreateTicketParams
+  body: Ticket
 }
 
 export interface IFindTicketParamsId {

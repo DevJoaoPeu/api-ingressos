@@ -1,8 +1,8 @@
-import { ICreateUserParams } from "@/user/type"
 import { prisma } from "@/prisma/PrismaClient/prisma"
+import { User } from "@prisma/client"
 
 export class CreateUserRepository {
-  async execute(createUserParams: ICreateUserParams) {
+  async execute(createUserParams: User) {
     return await prisma.user.create({
       data: {
         name: createUserParams.name,

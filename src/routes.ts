@@ -6,7 +6,7 @@ import {
   makeSessionUserController,
   makeUpdateUserController,
 } from "@/factories/user"
-import { ICreateUserParams, IUserByIdParams } from "./user/type"
+import { IUserByIdParams } from "./user/type"
 import {
   makeCreateEventController,
   makeDeleteEventController,
@@ -29,6 +29,7 @@ import {
   IParamsFindAllTicketId,
   TicketType,
 } from "./ticket/type"
+import { User } from "@prisma/client"
 
 const router = Router()
 
@@ -42,10 +43,7 @@ router.post("/user/register", async (request: Request, response: Response) => {
 router.patch(
   "/user/update/:userId",
   isAuthenticated,
-  async (
-    request: Request<{ userId: string }, ICreateUserParams>,
-    response: Response
-  ) => {
+  async (request: Request<{ userId: string }, User>, response: Response) => {
     const updateUserController = makeUpdateUserController()
     const { statusCode, body } = await updateUserController.execute(request)
 

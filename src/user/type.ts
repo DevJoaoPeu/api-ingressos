@@ -1,15 +1,11 @@
-export interface ICreateUserParams {
-  email: string
-  name: string
-  password: string
-}
+import { User } from "@prisma/client"
 
 export interface ICreateHttpRequest {
-  body: ICreateUserParams
+  body: User
 }
 
 export interface IUpdateUserParams {
-  body?: ICreateUserParams
+  body?: Partial<User>
   params: {
     userId: string
   }
