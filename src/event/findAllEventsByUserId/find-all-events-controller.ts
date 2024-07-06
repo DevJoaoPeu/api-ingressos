@@ -10,9 +10,7 @@ import { IUserByIdParams } from "@/user/type"
 export class FindAllEventsByUserIdController {
   constructor(
     private readonly findAllEventsByUserIdUseCase: FindAllEventsByUserIdUseCase
-  ) {
-    this.findAllEventsByUserIdUseCase = findAllEventsByUserIdUseCase
-  }
+  ) {}
   async execute(httpRequest: IUserByIdParams) {
     try {
       const params = httpRequest.params.userId

@@ -7,9 +7,7 @@ import { DateInvalid, IdNotFound } from "@/erros/event/errors"
 import { NotAuthorized } from "@/erros/helpers/validation"
 
 export class CreateEventController {
-  constructor(private readonly createEventUseCase: CreateEventUseCase) {
-    this.createEventUseCase = createEventUseCase
-  }
+  constructor(private readonly createEventUseCase: CreateEventUseCase) {}
 
   async execute(httpRequest: IEventHttpRequest) {
     try {

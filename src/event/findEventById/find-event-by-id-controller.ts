@@ -7,9 +7,7 @@ import {
 } from "@/erros/helpers/validation"
 
 export class FindEventByIdController {
-  constructor(private readonly findEventByIdUseCase: FindEventByIdUseCase) {
-    this.findEventByIdUseCase = findEventByIdUseCase
-  }
+  constructor(private readonly findEventByIdUseCase: FindEventByIdUseCase) {}
 
   async execute(httpRequest: IEventByIdParams) {
     try {

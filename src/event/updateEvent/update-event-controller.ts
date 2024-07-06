@@ -7,9 +7,7 @@ import { ZodError } from "zod"
 import { DateInvalid } from "@/erros/event/errors"
 
 export class UpdateEventController {
-  constructor(private readonly updateEventUseCase: UpdateEventUseCase) {
-    this.updateEventUseCase = updateEventUseCase
-  }
+  constructor(private readonly updateEventUseCase: UpdateEventUseCase) {}
   async execute(httpRequest: IUpdateEventParams) {
     try {
       const eventId = httpRequest.params.eventId

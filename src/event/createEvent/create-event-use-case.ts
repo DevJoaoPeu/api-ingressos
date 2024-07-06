@@ -7,9 +7,7 @@ export class CreateEventUseCase {
   constructor(
     private readonly createEventRepository: CreateEventRepository,
     private readonly findUserByIdRepository: FindUserByIdRepository
-  ) {
-    this.createEventRepository = createEventRepository
-  }
+  ) {}
   async execute(createEventParams: ICreateEventParams) {
     const findUserId = await this.findUserByIdRepository.execute(
       createEventParams.userId
