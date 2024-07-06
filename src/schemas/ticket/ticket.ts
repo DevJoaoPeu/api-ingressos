@@ -18,9 +18,6 @@ export const createTicketSchema = z.object({
     .string({
       required_error: "dtStart is required",
     })
-    .datetime({
-      message: "dtStart must be a valid date",
-    })
     .optional(),
   dtAvailability: z
     .string({
