@@ -8,9 +8,7 @@ import { FindUserByIdUseCase } from "./find-user-by-id-use-case"
 import { ok, serverError } from "@/erros/helpers/http"
 
 export class FindUserByIdController {
-  constructor(private readonly findUserByIdUseCase: FindUserByIdUseCase) {
-    this.findUserByIdUseCase = findUserByIdUseCase
-  }
+  constructor(private readonly findUserByIdUseCase: FindUserByIdUseCase) {}
 
   async execute(httpRequest: IUserByIdParams) {
     try {

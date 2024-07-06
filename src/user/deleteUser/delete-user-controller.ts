@@ -8,9 +8,7 @@ import { ok, serverError } from "@/erros/helpers/http"
 import { IUserByIdParams } from "../type"
 
 export class DeleteUserController {
-  constructor(private readonly deleteUserUseCase: DeleteUserUseCase) {
-    this.deleteUserUseCase = deleteUserUseCase
-  }
+  constructor(private readonly deleteUserUseCase: DeleteUserUseCase) {}
   async execute(httpRequest: IUserByIdParams) {
     try {
       const userId = httpRequest.params.userId

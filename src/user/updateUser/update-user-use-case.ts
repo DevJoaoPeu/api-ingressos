@@ -8,10 +8,7 @@ export class UpdateUserUseCase {
   constructor(
     private readonly updateUserRepository: UpdateUserRepository,
     private readonly findUserByEmailRepository: FindUserByEmailRepository
-  ) {
-    this.updateUserRepository = updateUserRepository
-    this.findUserByEmailRepository = findUserByEmailRepository
-  }
+  ) {}
   async execute(userId: string, updateUserParams: Partial<ICreateUserParams>) {
     if (updateUserParams.email) {
       const userWithProvidedEmail =

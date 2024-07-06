@@ -6,9 +6,7 @@ import { EmailOrPasswordIncorrect } from "@/erros/user/errors"
 import { ISessionHttpRequest } from "../type"
 
 export class SessionUserController {
-  constructor(private readonly sessionUserUseCase: SessionUserUseCase) {
-    this.sessionUserUseCase = sessionUserUseCase
-  }
+  constructor(private readonly sessionUserUseCase: SessionUserUseCase) {}
 
   async execute(httpRequest: ISessionHttpRequest) {
     try {

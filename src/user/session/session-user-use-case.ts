@@ -7,9 +7,7 @@ import { sign } from "jsonwebtoken"
 export class SessionUserUseCase {
   constructor(
     private readonly findUserByEmailRepository: FindUserByEmailRepository
-  ) {
-    this.findUserByEmailRepository = findUserByEmailRepository
-  }
+  ) {}
 
   token(id: string, email: string) {
     const token = sign(

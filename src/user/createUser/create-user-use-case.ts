@@ -8,10 +8,7 @@ export class CreateUserUseCase {
   constructor(
     private readonly createUserRepository: CreateUserRepository,
     private readonly findUserByEmailRepository: FindUserByEmailRepository
-  ) {
-    this.createUserRepository = createUserRepository
-    this.findUserByEmailRepository = findUserByEmailRepository
-  }
+  ) {}
 
   async execute(createUserParams: ICreateUserParams) {
     const userWithProvidedEmail = await this.findUserByEmailRepository.execute(

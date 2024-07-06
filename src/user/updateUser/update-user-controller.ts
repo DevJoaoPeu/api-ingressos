@@ -7,9 +7,7 @@ import { ZodError } from "zod"
 import { EmailAlreadyExists } from "@/erros/user/errors"
 
 export class UpdateUserController {
-  constructor(private readonly updateUserUseCase: UpdateUserUseCase) {
-    this.updateUserUseCase = updateUserUseCase
-  }
+  constructor(private readonly updateUserUseCase: UpdateUserUseCase) {}
 
   async execute(httpRequest: IUpdateUserParams) {
     try {

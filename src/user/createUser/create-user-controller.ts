@@ -6,9 +6,7 @@ import { CreateUserUseCase } from "@/user/createUser/create-user-use-case"
 import { ZodError } from "zod"
 
 export class CreateUserController {
-  constructor(private readonly createUserUseCase: CreateUserUseCase) {
-    this.createUserUseCase = createUserUseCase
-  }
+  constructor(private readonly createUserUseCase: CreateUserUseCase) {}
   async execute(httpRequest: ICreateHttpRequest) {
     try {
       const params = httpRequest.body
