@@ -6,17 +6,17 @@ export const validationDate = (
   dataBaseDtStart: string,
   dataBaseDtEnd: string
 ) => {
-  const dtStart = paramsDtStart ? parseISO(paramsDtStart) : null
-  const dtEnd = paramsDtEnd ? parseISO(paramsDtEnd) : null
+  const dtStart = paramsDtStart ? parseISO(paramsDtStart) : false
+  const dtEnd = paramsDtEnd ? parseISO(paramsDtEnd) : false
 
   if (dtStart && dtEnd) {
     if (isEqual(dtStart, dtEnd)) {
-      return false
+      return true
     }
     if (isAfter(dtStart, dataBaseDtStart) || isBefore(dtEnd, dataBaseDtEnd)) {
-      return false
+      return true
     }
 
-    return true
+    return false
   }
 }

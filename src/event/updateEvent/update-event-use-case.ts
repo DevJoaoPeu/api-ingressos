@@ -20,7 +20,7 @@ export class UpdateEventUseCase {
       existingEvent?.dtEnd
     )
 
-    if (!validationDateParams) {
+    if (validationDateParams) {
       throw new DateInvalid()
     }
 
