@@ -1,26 +1,20 @@
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { DeleteEventUseCase } from "./delete-event-use-case"
 import { IEventByIdParams } from "../types"
-import {
-  checkIfIdIsValid,
-  eventNotFoundResponse,
-  invalidIdResponse,
-} from "@/erros/helpers/validation"
+import { eventNotFoundResponse } from "@/erros/helpers/validation"
+import { isValidIdSchema } from "@/schemas/event/event"
+import { ZodError } from "zod"
 
 export class DeleteEventController {
   constructor(private readonly deleteEventUseCase: DeleteEventUseCase) {}
 
   async execute(httpRequest: IEventByIdParams) {
     try {
-      const userId = httpRequest.params.eventId
+      const eventId = httpRequest.params.eventId
 
-      const idIsValid = checkIfIdIsValid(userId)
+      await isValidIdSchema.parseAsync({ eventId })
 
-      if (!idIsValid) {
-        return invalidIdResponse()
-      }
-
-      const deleteEvent = await this.deleteEventUseCase.execute(userId)
+      const deleteEvent = await this.deleteEventUseCase.execute(eventId)
 
       if (!deleteEvent) {
         return eventNotFoundResponse()
@@ -28,6 +22,11 @@ export class DeleteEventController {
 
       return ok(deleteEvent)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          error: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }

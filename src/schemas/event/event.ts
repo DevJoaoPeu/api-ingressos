@@ -45,3 +45,13 @@ export const createEventSchema = z.object({
 })
 
 export const updateEventSchema = createEventSchema.partial().strict()
+
+export const isValidIdSchema = z.object({
+  eventId: z
+    .string({
+      message: "userId is required",
+    })
+    .uuid({
+      message: "Uuid is invalid",
+    }),
+})

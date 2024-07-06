@@ -1,11 +1,9 @@
-import { ok, serverError } from "@/erros/helpers/http"
-import {
-  checkIfIdIsValid,
-  eventNotFoundResponse,
-  invalidIdResponse,
-} from "@/erros/helpers/validation"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { eventNotFoundResponse } from "@/erros/helpers/validation"
 import { FindAllEventsByUserIdUseCase } from "./find-all-events-use-case"
 import { IUserByIdParams } from "@/user/type"
+import { isValidIdSchema } from "@/schemas/user/user"
+import { ZodError } from "zod"
 
 export class FindAllEventsByUserIdController {
   constructor(
@@ -13,15 +11,11 @@ export class FindAllEventsByUserIdController {
   ) {}
   async execute(httpRequest: IUserByIdParams) {
     try {
-      const params = httpRequest.params.userId
+      const userId = httpRequest.params.userId
 
-      const idIsValid = checkIfIdIsValid(params)
+      await isValidIdSchema.parseAsync({ userId })
 
-      if (!idIsValid) {
-        return invalidIdResponse()
-      }
-
-      const events = await this.findAllEventsByUserIdUseCase.execute(params)
+      const events = await this.findAllEventsByUserIdUseCase.execute(userId)
 
       if (!events) {
         return eventNotFoundResponse()
@@ -29,6 +23,11 @@ export class FindAllEventsByUserIdController {
 
       return ok(events)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }

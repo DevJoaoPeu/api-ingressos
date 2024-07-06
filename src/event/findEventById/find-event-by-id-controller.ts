@@ -1,25 +1,20 @@
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { IEventByIdParams } from "../types"
 import { FindEventByIdUseCase } from "./find-event-by-id-use-case"
-import {
-  checkIfIdIsValid,
-  eventNotFoundResponse,
-} from "@/erros/helpers/validation"
+import { eventNotFoundResponse } from "@/erros/helpers/validation"
+import { isValidIdSchema } from "@/schemas/event/event"
+import { ZodError } from "zod"
 
 export class FindEventByIdController {
   constructor(private readonly findEventByIdUseCase: FindEventByIdUseCase) {}
 
   async execute(httpRequest: IEventByIdParams) {
     try {
-      const params = httpRequest.params.eventId
+      const eventId = httpRequest.params.eventId
 
-      const checkId = checkIfIdIsValid(params)
+      await isValidIdSchema.parseAsync({ eventId })
 
-      if (!checkId) {
-        return eventNotFoundResponse()
-      }
-
-      const event = await this.findEventByIdUseCase.execute(params)
+      const event = await this.findEventByIdUseCase.execute(eventId)
 
       if (!event) {
         return eventNotFoundResponse()
@@ -27,6 +22,11 @@ export class FindEventByIdController {
 
       return ok(event)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }
