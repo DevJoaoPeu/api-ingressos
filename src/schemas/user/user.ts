@@ -53,3 +53,13 @@ export const sessionUserSchema = z.object({
       message: "Password must have at least 6 characters",
     }),
 })
+
+export const isValidIdSchema = z.object({
+  userId: z
+    .string({
+      message: "userId is required",
+    })
+    .uuid({
+      message: "Uuid is invalid",
+    }),
+})

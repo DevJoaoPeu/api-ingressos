@@ -1,11 +1,9 @@
-import {
-  checkIfIdIsValid,
-  invalidIdResponse,
-  userNotFoundResponse,
-} from "@/erros/helpers/validation"
+import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { DeleteUserUseCase } from "./delete-user-use-case"
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { IUserByIdParams } from "../type"
+import { isValidIdSchema } from "@/schemas/user/user"
+import { ZodError } from "zod"
 
 export class DeleteUserController {
   constructor(private readonly deleteUserUseCase: DeleteUserUseCase) {}
@@ -13,11 +11,7 @@ export class DeleteUserController {
     try {
       const userId = httpRequest.params.userId
 
-      const idIsValid = checkIfIdIsValid(userId)
-
-      if (!idIsValid) {
-        return invalidIdResponse()
-      }
+      await isValidIdSchema.parseAsync({ userId })
 
       const deleteUser = await this.deleteUserUseCase.execute(userId)
 
@@ -27,6 +21,11 @@ export class DeleteUserController {
 
       return ok(deleteUser)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }

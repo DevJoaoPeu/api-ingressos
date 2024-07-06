@@ -1,26 +1,20 @@
-import {
-  checkIfIdIsValid,
-  invalidIdResponse,
-  userNotFoundResponse,
-} from "@/erros/helpers/validation"
+import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { IUserByIdParams } from "../type"
 import { FindUserByIdUseCase } from "./find-user-by-id-use-case"
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { isValidIdSchema } from "@/schemas/user/user"
+import { ZodError } from "zod"
 
 export class FindUserByIdController {
   constructor(private readonly findUserByIdUseCase: FindUserByIdUseCase) {}
 
   async execute(httpRequest: IUserByIdParams) {
     try {
-      const params = httpRequest.params.userId
+      const userId = httpRequest.params.userId
 
-      const idIsValid = checkIfIdIsValid(params)
+      await isValidIdSchema.parseAsync({ userId })
 
-      if (!idIsValid) {
-        return invalidIdResponse()
-      }
-
-      const user = await this.findUserByIdUseCase.execute(params)
+      const user = await this.findUserByIdUseCase.execute(userId)
 
       if (!user) {
         return userNotFoundResponse()
@@ -28,6 +22,11 @@ export class FindUserByIdController {
 
       return ok(user)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }
