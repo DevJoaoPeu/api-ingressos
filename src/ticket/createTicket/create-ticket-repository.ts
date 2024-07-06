@@ -1,8 +1,8 @@
 import { prisma } from "@/prisma/PrismaClient/prisma"
-import { ICreateTicketParams } from "../type"
+import { Ticket } from "@prisma/client"
 
 export class CreateTicketRepository {
-  async execute(createTicketParams: ICreateTicketParams) {
+  async execute(createTicketParams: Ticket) {
     const inserts = []
     for (let i = 0; i < createTicketParams.qtTicket; i++) {
       const newTicket = await prisma.ticket.create({ data: createTicketParams })

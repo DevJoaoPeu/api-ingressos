@@ -1,14 +1,14 @@
 import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-repository"
-import { ICreateTicketParams } from "../type"
 import { CreateTicketRepository } from "./create-ticket-repository"
-import { EventNotFound } from "@/erros/helpers/validation"
+import { EventNotFound } from "@/erros/errors"
+import { Ticket } from "@prisma/client"
 
 export class CreateTicketUseCase {
   constructor(
     private readonly createTicketRepository: CreateTicketRepository,
     private readonly findEventByIdRepository: FindEventByIdRepository
   ) {}
-  async execute(createTicketParams: ICreateTicketParams) {
+  async execute(createTicketParams: Ticket) {
     const event = await this.findEventByIdRepository.execute(
       createTicketParams.eventId
     )

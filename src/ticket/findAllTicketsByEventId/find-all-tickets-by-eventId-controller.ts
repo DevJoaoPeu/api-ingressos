@@ -1,6 +1,6 @@
 import { IEventByIdParams } from "@/event/types"
 import { FindAllTicketsByEventIdUseCase } from "./find-all-tickets-by-eventId-use-case"
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { isValidIdSchema } from "@/schemas/event/event"
 import { ZodError } from "zod"
 

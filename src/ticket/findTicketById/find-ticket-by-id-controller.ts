@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { IFindTicketParamsId } from "../type"
 import { ticketNotFoundResponse } from "@/erros/helpers/validation"
 import { FindTicketByIdUseCase } from "./find-ticket-by-id-use-case"
