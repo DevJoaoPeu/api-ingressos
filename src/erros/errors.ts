@@ -39,3 +39,17 @@ export class EventNotFound extends Error {
     this.name = "EventNotFound"
   }
 }
+
+export class UserNotFound extends Error {
+  constructor() {
+    super(`User not found`)
+    this.name = "UserNotFound"
+  }
+}
+
+export class TicketNotFound extends Error {
+  constructor() {
+    super(`Ticket not found`)
+    this.name = "TicketNotFound"
+  }
+}
