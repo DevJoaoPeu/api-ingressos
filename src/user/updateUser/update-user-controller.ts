@@ -1,10 +1,10 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { ICreateUserParams, IUpdateUserParams } from "@/user/type"
 import { UpdateUserUseCase } from "./update-user-use-case"
 import { updateUserSchema } from "@/schemas/user/user"
 import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { ZodError } from "zod"
-import { EmailAlreadyExists } from "@/erros/user/errors"
+import { EmailAlreadyExists } from "@/erros/errors"
 
 export class UpdateUserController {
   constructor(private readonly updateUserUseCase: UpdateUserUseCase) {}

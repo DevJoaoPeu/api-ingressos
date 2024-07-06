@@ -1,5 +1,5 @@
-import { badRequest, created, serverError } from "@/erros/helpers/http"
-import { EmailAlreadyExists } from "@/erros/user/errors"
+import { badRequest, created, serverError } from "@/erros/http"
+import { EmailAlreadyExists } from "@/erros/errors"
 import { createUserSchema } from "@/schemas/user/user"
 import { ICreateHttpRequest } from "@/user/type"
 import { CreateUserUseCase } from "@/user/createUser/create-user-use-case"

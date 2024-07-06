@@ -1,7 +1,7 @@
 import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { IUserByIdParams } from "../type"
 import { FindUserByIdUseCase } from "./find-user-by-id-use-case"
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { isValidIdSchema } from "@/schemas/user/user"
 import { ZodError } from "zod"
 

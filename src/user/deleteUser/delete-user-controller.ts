@@ -1,6 +1,6 @@
 import { userNotFoundResponse } from "@/erros/helpers/validation"
 import { DeleteUserUseCase } from "./delete-user-use-case"
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { IUserByIdParams } from "../type"
 import { isValidIdSchema } from "@/schemas/user/user"
 import { ZodError } from "zod"

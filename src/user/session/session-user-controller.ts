@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { SessionUserUseCase } from "./session-user-use-case"
 import { sessionUserSchema } from "@/schemas/user/user"
 import { ZodError } from "zod"
