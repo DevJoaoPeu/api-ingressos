@@ -1,10 +1,10 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { IUpdateEventParams } from "../types"
 import { UpdateEventUseCase } from "./update-event-use-case"
 import { updateEventSchema } from "@/schemas/event/event"
-import { eventNotFoundResponse } from "@/erros/helpers/validation"
+import { eventNotFoundResponse } from "@/erros/validation"
 import { ZodError } from "zod"
-import { DateInvalid } from "@/erros/event/errors"
+import { DateInvalid } from "@/erros/errors"
 
 export class UpdateEventController {
   constructor(private readonly updateEventUseCase: UpdateEventUseCase) {}

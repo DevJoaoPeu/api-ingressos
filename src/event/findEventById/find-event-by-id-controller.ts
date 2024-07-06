@@ -1,7 +1,7 @@
-import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/http"
 import { IEventByIdParams } from "../types"
 import { FindEventByIdUseCase } from "./find-event-by-id-use-case"
-import { eventNotFoundResponse } from "@/erros/helpers/validation"
+import { eventNotFoundResponse } from "@/erros/validation"
 import { isValidIdSchema } from "@/schemas/event/event"
 import { ZodError } from "zod"
 

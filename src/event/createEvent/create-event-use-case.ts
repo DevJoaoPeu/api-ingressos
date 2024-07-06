@@ -1,7 +1,7 @@
 import { FindUserByIdRepository } from "@/user/findUserById/find-user-by-id-repository"
 import { ICreateEventParams } from "../types"
 import { CreateEventRepository } from "./create-event-repository"
-import { DateInvalid, IdNotFound } from "@/erros/event/errors"
+import { DateInvalid, IdNotFound } from "@/erros/errors"
 
 export class CreateEventUseCase {
   constructor(

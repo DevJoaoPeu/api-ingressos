@@ -1,4 +1,4 @@
-import { DateInvalid } from "@/erros/event/errors"
+import { DateInvalid } from "@/erros/errors"
 import { FindEventByIdRepository } from "../findEventById/find-event-by-id-repository"
 import { ICreateEventParams } from "../types"
 import { UpdateEventRepository } from "./update-event-repository"
