@@ -48,3 +48,13 @@ export const findTicketsSchema = z.object({
       message: "eventId is required",
     }),
 })
+
+export const isValidIdSchema = z.object({
+  ticketId: z
+    .string({
+      message: "ticketId is required",
+    })
+    .uuid({
+      message: "Uuid is invalid",
+    }),
+})

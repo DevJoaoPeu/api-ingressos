@@ -1,7 +1,8 @@
-import { ok, serverError } from "@/erros/helpers/http"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
 import { IUserByIdParams } from "@/user/type"
 import { FindTicketByUserIdUseCase } from "./find-tickets-by-user-id-use-case"
-import { checkIfIdIsValid, invalidIdResponse } from "@/erros/helpers/validation"
+import { isValidIdSchema } from "@/schemas/user/user"
+import { ZodError } from "zod"
 
 export class FindTicketByUserIdController {
   constructor(
@@ -9,18 +10,19 @@ export class FindTicketByUserIdController {
   ) {}
   async execute(httpRequest: IUserByIdParams) {
     try {
-      const params = httpRequest.params.userId
+      const userId = httpRequest.params.userId
 
-      const idIsValid = checkIfIdIsValid(params)
+      await isValidIdSchema.parseAsync(userId)
 
-      if (!idIsValid) {
-        return invalidIdResponse()
-      }
-
-      const tickets = await this.findTicketByUserIdUseCase.execute(params)
+      const tickets = await this.findTicketByUserIdUseCase.execute(userId)
 
       return ok(tickets)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }

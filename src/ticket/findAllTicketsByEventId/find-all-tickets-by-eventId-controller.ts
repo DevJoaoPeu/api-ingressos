@@ -1,10 +1,8 @@
 import { IEventByIdParams } from "@/event/types"
 import { FindAllTicketsByEventIdUseCase } from "./find-all-tickets-by-eventId-use-case"
-import { ok, serverError } from "@/erros/helpers/http"
-import {
-  checkIfIdIsValid,
-  ticketNotFoundResponse,
-} from "@/erros/helpers/validation"
+import { badRequest, ok, serverError } from "@/erros/helpers/http"
+import { isValidIdSchema } from "@/schemas/event/event"
+import { ZodError } from "zod"
 
 export class FindAllTicketsByEventIdController {
   constructor(
@@ -12,18 +10,19 @@ export class FindAllTicketsByEventIdController {
   ) {}
   async execute(httpParams: IEventByIdParams) {
     try {
-      const params = httpParams.params.eventId
+      const eventId = httpParams.params.eventId
 
-      const idIsValid = checkIfIdIsValid(params)
+      await isValidIdSchema.parseAsync({ eventId })
 
-      if (!idIsValid) {
-        return ticketNotFoundResponse()
-      }
-
-      const tickets = await this.findAllTicketsByEventIdUseCase.execute(params)
+      const tickets = await this.findAllTicketsByEventIdUseCase.execute(eventId)
 
       return ok(tickets)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          messsage: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }
