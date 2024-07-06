@@ -5,7 +5,7 @@ import {
   makeFindUserByIdController,
   makeSessionUserController,
   makeUpdateUserController,
-} from "@/factories/user/user"
+} from "@/factories/user"
 import { ICreateUserParams, IUserByIdParams } from "./user/type"
 import {
   makeCreateEventController,
@@ -13,7 +13,7 @@ import {
   makeFindAllEventsByUserIdController,
   makeFindEventByIdController,
   makeUpdateEventController,
-} from "./factories/event/event"
+} from "./factories/event"
 import { IEventByIdParams } from "./event/types"
 import { isAuthenticated } from "./middlewares"
 import {
@@ -23,7 +23,7 @@ import {
   makeFindTicketByIdController,
   makeFindTicketByTypeController,
   makeFindTicketByUserIdController,
-} from "./factories/ticket/ticket"
+} from "./factories/ticket"
 import {
   IFindTicketParamsId,
   IParamsFindAllTicketId,

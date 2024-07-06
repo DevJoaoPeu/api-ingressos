@@ -1,4 +1,4 @@
-import { NotAuthorized } from "@/erros/helpers/validation"
+import { NotAuthorized } from "@/erros/errors"
 import { NextFunction, Request, Response } from "express"
 import { verify } from "jsonwebtoken"
 
