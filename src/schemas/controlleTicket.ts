@@ -18,3 +18,18 @@ export const controlleTicketSchema = z.object({
       message: "eventId is required",
     }),
 })
+
+export const findControlleTicketSchema = z.object({
+  eventId: z
+    .string({
+      message: "eventId is required",
+    })
+    .uuid({
+      message: "Invalid uuid",
+    })
+    .trim()
+    .min(1, {
+      message: "eventId is required",
+    }),
+  type: TipoIngressoEnum.optional(),
+})
