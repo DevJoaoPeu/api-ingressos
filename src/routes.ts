@@ -26,6 +26,7 @@ import {
 } from "./factories/ticket"
 import { IFindTicketParamsId, IParamsFindAllTicketId } from "./ticket/type"
 import { TicketType, User } from "@prisma/client"
+import { makeCreateControlleTicketController } from "./factories/controlleTicket"
 
 const router = Router()
 
@@ -240,6 +241,20 @@ router.delete(
     const deleteTicketsController = makeDeleteTicketController()
 
     const { statusCode, body } = await deleteTicketsController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.post(
+  "/controlleTicket/create",
+  async (request: Request, response: Response) => {
+    const createControlleTicketController =
+      makeCreateControlleTicketController()
+
+    const { statusCode, body } = await createControlleTicketController.execute(
+      request
+    )
 
     response.status(statusCode).send(body)
   }
