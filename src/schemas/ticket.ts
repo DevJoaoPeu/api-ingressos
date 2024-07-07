@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-const TipoIngressoEnum = z.enum(["PISTA", "VIP"])
+export const TipoIngressoEnum = z.enum(["PISTA", "VIP"])
 
 export const createTicketSchema = z.object({
   qtTicket: z.number({
