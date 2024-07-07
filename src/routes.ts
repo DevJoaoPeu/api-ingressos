@@ -26,7 +26,10 @@ import {
 } from "./factories/ticket"
 import { IFindTicketParamsId, IParamsFindAllTicketId } from "./ticket/type"
 import { TicketType, User } from "@prisma/client"
-import { makeCreateControlleTicketController } from "./factories/controlleTicket"
+import {
+  makeCreateControlleTicketController,
+  makeFindControlleTicketByEventIdController,
+} from "./factories/controlleTicket"
 
 const router = Router()
 
@@ -255,6 +258,19 @@ router.post(
     const { statusCode, body } = await createControlleTicketController.execute(
       request
     )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/controlleTicket/find",
+  async (request: Request, response: Response) => {
+    const findControlleTicketByEventIdController =
+      makeFindControlleTicketByEventIdController()
+
+    const { statusCode, body } =
+      await findControlleTicketByEventIdController.execute(request)
 
     response.status(statusCode).send(body)
   }
