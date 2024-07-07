@@ -8,3 +8,7 @@ export interface IFindControlleTicketParams {
   eventId: string
   type?: TicketType
 }
+
+export interface IHttpParamsFindControlleTicket {
+  body: IFindControlleTicketParams
+}
