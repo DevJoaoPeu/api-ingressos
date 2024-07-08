@@ -28,6 +28,7 @@ import { IFindTicketParamsId, IParamsFindAllTicketId } from "./ticket/type"
 import { TicketType, User } from "@prisma/client"
 import {
   makeCreateControlleTicketController,
+  makeDeleteControlleTicketController,
   makeFindControlleTicketByEventIdController,
 } from "./factories/controlleTicket"
 
@@ -268,6 +269,22 @@ router.get(
   async (request: Request, response: Response) => {
     const findControlleTicketByEventIdController =
       makeFindControlleTicketByEventIdController()
+
+    const { statusCode, body } =
+      await findControlleTicketByEventIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.delete(
+  "/controlleTicket/delete/:controlleTicketId",
+  async (
+    request: Request<{ controlleTicketId: string }>,
+    response: Response
+  ) => {
+    const findControlleTicketByEventIdController =
+      makeDeleteControlleTicketController()
 
     const { statusCode, body } =
       await findControlleTicketByEventIdController.execute(request)
