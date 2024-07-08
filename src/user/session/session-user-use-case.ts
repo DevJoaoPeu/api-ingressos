@@ -12,7 +12,8 @@ export class SessionUserUseCase {
   token(id: string, email: string) {
     const token = sign(
       {
-        email: email,
+        id,
+        email,
       },
       process.env.JWT_SECRET as string,
       {

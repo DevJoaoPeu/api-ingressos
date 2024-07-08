@@ -9,6 +9,9 @@ export class CreateUserRepository {
         email: createUserParams.email,
         password: createUserParams.password,
       },
+      select: {
+        email: true,
+      },
     })
   }
 }
