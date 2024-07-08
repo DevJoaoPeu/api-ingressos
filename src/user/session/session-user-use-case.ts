@@ -40,8 +40,6 @@ export class SessionUserUseCase {
     const tokenJwt = this.token(isValidUser.id, sessionUserParams.email)
 
     const user = {
-      id: isValidUser.id,
-      email: isValidUser.email,
       token: tokenJwt,
     }
 
