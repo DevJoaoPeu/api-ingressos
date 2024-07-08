@@ -33,3 +33,13 @@ export const findControlleTicketSchema = z.object({
     }),
   type: TipoIngressoEnum.optional(),
 })
+
+export const isValidControlleTicketIdSchema = z.object({
+  controlleTicketId: z
+    .string({
+      message: "userId is required",
+    })
+    .uuid({
+      message: "Uuid is invalid",
+    }),
+})

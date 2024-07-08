@@ -12,3 +12,9 @@ export interface IFindControlleTicketParams {
 export interface IHttpParamsFindControlleTicket {
   body: IFindControlleTicketParams
 }
+
+export interface IHttpParamsControlleTicket {
+  params: {
+    controlleTicketId: string
+  }
+}
