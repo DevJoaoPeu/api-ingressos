@@ -3,6 +3,7 @@ import { FindUserByEmailRepository } from "@/user/findUserByEmail/find-user-by-e
 import { EmailAlreadyExists } from "@/erros/errors"
 import { hash } from "bcrypt"
 import { User } from "@prisma/client"
+import { token } from "../helper/auth/token"
 
 export class CreateUserUseCase {
   constructor(
@@ -28,6 +29,13 @@ export class CreateUserUseCase {
 
     const createdUser = await this.createUserRepository.execute(user)
 
-    return createdUser
+    const tokenJwt = token(createdUser.id, createUserParams.email)
+
+    const createUser = {
+      ...createdUser,
+      tokenJwt,
+    }
+
+    return createUser
   }
 }
