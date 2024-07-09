@@ -5,6 +5,7 @@ import {
   makeFindUserByIdController,
   makeSessionUserController,
   makeUpdateUserController,
+  makeValidationUserController,
 } from "@/factories/user"
 import { IUserByIdParams } from "./user/type"
 import {
@@ -292,5 +293,13 @@ router.delete(
     response.status(statusCode).send(body)
   }
 )
+
+router.get("/user/me", async (request: Request, response: Response) => {
+  const validationUserController = makeValidationUserController()
+
+  const { statusCode, body } = await validationUserController.execute(request)
+
+  response.status(statusCode).send(body)
+})
 
 export { router }
