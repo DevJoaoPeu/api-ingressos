@@ -1,3 +1,5 @@
+import { TicketType } from "@prisma/client"
+
 export class IdNotFound extends Error {
   constructor() {
     super(`Invalid id, please verify`)
@@ -51,5 +53,14 @@ export class TicketNotFound extends Error {
   constructor() {
     super(`Ticket not found`)
     this.name = "TicketNotFound"
+  }
+}
+
+export class ControlleTicketExists extends Error {
+  constructor(type: TicketType) {
+    super(
+      `The track ${type} controlleTicket already exists, update the existing one!`
+    )
+    this.name = "ControlleTicketExists"
   }
 }

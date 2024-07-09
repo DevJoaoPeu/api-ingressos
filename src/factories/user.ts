@@ -13,6 +13,8 @@ import { SessionUserUseCase } from "@/user/session/session-user-use-case"
 import { UpdateUserController } from "@/user/updateUser/update-user-controller"
 import { UpdateUserRepository } from "@/user/updateUser/update-user-repository"
 import { UpdateUserUseCase } from "@/user/updateUser/update-user-use-case"
+import { ValidationUserController } from "@/user/validationUser/validation-user-controller"
+import { ValidationUserUseCase } from "@/user/validationUser/validation-user-use-case"
 
 export const makeCreateUserController = () => {
   const createUserRepository = new CreateUserRepository()
@@ -65,4 +67,14 @@ export const makeFindUserByIdController = () => {
   const findUserByIdController = new FindUserByIdController(findUserByIdUseCase)
 
   return findUserByIdController
+}
+
+export const makeValidationUserController = () => {
+  const validationUserUseCase = new ValidationUserUseCase()
+
+  const validationUserController = new ValidationUserController(
+    validationUserUseCase
+  )
+
+  return validationUserController
 }
