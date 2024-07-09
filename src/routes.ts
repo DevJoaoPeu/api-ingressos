@@ -32,6 +32,7 @@ import {
   makeDeleteControlleTicketController,
   makeFindControlleTicketByEventIdController,
 } from "./factories/controlleTicket"
+import { makeCreateSaleController } from "./factories/sale"
 
 const router = Router()
 
@@ -298,6 +299,14 @@ router.get("/user/me", async (request: Request, response: Response) => {
   const validationUserController = makeValidationUserController()
 
   const { statusCode, body } = await validationUserController.execute(request)
+
+  response.status(statusCode).send(body)
+})
+
+router.post("/sale/create", async (request: Request, response: Response) => {
+  const createSaleController = makeCreateSaleController()
+
+  const { statusCode, body } = await createSaleController.execute(request)
 
   response.status(statusCode).send(body)
 })
