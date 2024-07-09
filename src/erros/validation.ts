@@ -19,3 +19,8 @@ export const ticketNotFoundResponse = () =>
   notFound({
     message: "Ticket not found",
   })
+
+export const controlleTicketNotFoundResponse = () =>
+  notFound({
+    message: "controlleTicket not found",
+  })
