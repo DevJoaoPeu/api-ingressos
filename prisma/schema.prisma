@@ -33,7 +33,7 @@ model User {
 model Event {
   id               String             @id @default(uuid())
   name             String             @db.VarChar(50)
-  user             User               @relation(fields: [userId], references: [id])
+  user             User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId           String
   dtStart          DateTime
   dtEnd            DateTime
@@ -46,7 +46,7 @@ model Event {
 
 model Ticket {
   id             String     @id @default(uuid())
-  event          Event      @relation(fields: [eventId], references: [id])
+  event          Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
   eventId        String
   ownerId        String?
   type           TicketType
@@ -60,9 +60,9 @@ model Ticket {
 
 model Sale {
   id               String   @id @default(uuid())
-  user             User     @relation(fields: [userId], references: [id])
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId           String
-  ticket           Ticket   @relation(fields: [ticketId], references: [id])
+  ticket           Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   ticketId         String
   amountTotal      Float
   dateSale         DateTime @default(now())
@@ -76,7 +76,7 @@ model ControllerTicket {
   qtTicket Int
   type     TicketType
   price    Decimal    @db.Decimal(18, 2)
-  event    Event      @relation(fields: [eventId], references: [id])
+  event    Event      @relation(fields: [eventId], references: [id], onDelete: Cascade)
   eventId  String
 
   @@map("controllerTicket")
