@@ -6,11 +6,13 @@ export class ValidationUserController {
   constructor(private readonly validationUserUseCase: ValidationUserUseCase) {}
   async execute(httpParams) {
     try {
-      const params = httpParams.body.token
+      const params = httpParams.headers.authorization
 
-      const token = await this.validationUserUseCase.execute(params)
+      const [, token] = params.split(" ")
 
-      return ok(token)
+      const tokenJwt = await this.validationUserUseCase.execute(token)
+
+      return ok(tokenJwt)
     } catch (error) {
       if (error instanceof JsonWebTokenError) {
         return badRequest({
