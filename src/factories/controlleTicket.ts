@@ -6,15 +6,19 @@ import { DeleteControlleTicketUseCase } from "@/controlleTickets/deleteControlle
 import { FindControlleTicketByEventIdController } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-controller"
 import { FindControlleTicketByEventIdRepository } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
 import { FindControlleTicketByEventIdUseCase } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-use-case"
+import { FindControlleTicketByTypeRepository } from "@/controlleTickets/findControlleTicketByType/find-controlle-ticket-by-type-repository"
 import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-repository"
 
 export const makeCreateControlleTicketController = () => {
   const createControlleTicketRepository = new CreateControlleTicketRepository()
   const findEventByIdRepository = new FindEventByIdRepository()
+  const findControlleTicketByTypeRepository =
+    new FindControlleTicketByTypeRepository()
 
   const createControlleTicketUseCase = new CreateControlleTicketUseCase(
     createControlleTicketRepository,
-    findEventByIdRepository
+    findEventByIdRepository,
+    findControlleTicketByTypeRepository
   )
 
   const createControlleTicketController = new CreateControlleTicketController(
