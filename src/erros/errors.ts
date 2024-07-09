@@ -64,3 +64,10 @@ export class ControlleTicketExists extends Error {
     this.name = "ControlleTicketExists"
   }
 }
+
+export class QtTicketUnavailable extends Error {
+  constructor(amount: number) {
+    super(`number ${amount} of tickets unavailable`)
+    this.name = "QtTicketUnavailable"
+  }
+}
