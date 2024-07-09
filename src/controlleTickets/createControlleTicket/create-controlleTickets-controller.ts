@@ -3,7 +3,7 @@ import { IHttpCreateControlleTicketParams } from "../type"
 import { controlleTicketSchema } from "@/schemas/controlleTicket"
 import { ZodError } from "zod"
 import { CreateControlleTicketUseCase } from "./create-controlleTicket-use-case"
-import { EventNotFound } from "@/erros/errors"
+import { ControlleTicketExists, EventNotFound } from "@/erros/errors"
 
 export class CreateControlleTicketController {
   constructor(
@@ -28,6 +28,12 @@ export class CreateControlleTicketController {
       }
 
       if (error instanceof EventNotFound) {
+        return badRequest({
+          message: error.message,
+        })
+      }
+
+      if (error instanceof ControlleTicketExists) {
         return badRequest({
           message: error.message,
         })
