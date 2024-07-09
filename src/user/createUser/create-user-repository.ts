@@ -11,6 +11,7 @@ export class CreateUserRepository {
       },
       select: {
         email: true,
+        id: true,
       },
     })
   }

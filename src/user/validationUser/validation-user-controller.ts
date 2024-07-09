@@ -1,10 +1,11 @@
 import { badRequest, ok, serverError } from "@/erros/http"
 import { ValidationUserUseCase } from "./validation-user-use-case"
 import { JsonWebTokenError } from "jsonwebtoken"
+import { IValidationUser } from "../type"
 
 export class ValidationUserController {
   constructor(private readonly validationUserUseCase: ValidationUserUseCase) {}
-  async execute(httpParams) {
+  async execute(httpParams: IValidationUser) {
     try {
       const params = httpParams.headers.authorization
 

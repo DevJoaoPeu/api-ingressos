@@ -24,3 +24,9 @@ export interface IUserByIdParams {
     userId: string
   }
 }
+
+export interface IValidationUser {
+  headers: {
+    authorization: string
+  }
+}

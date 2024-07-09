@@ -2,28 +2,12 @@ import { EmailOrPasswordIncorrect } from "@/erros/errors"
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
 import { ISessionUserParams } from "@/user/type"
 import { compare } from "bcrypt"
-import { sign } from "jsonwebtoken"
+import { token } from "../helper/auth/token"
 
 export class SessionUserUseCase {
   constructor(
     private readonly findUserByEmailRepository: FindUserByEmailRepository
   ) {}
-
-  token(id: string, email: string) {
-    const token = sign(
-      {
-        id,
-        email,
-      },
-      process.env.JWT_SECRET as string,
-      {
-        subject: id,
-        expiresIn: "30d",
-      }
-    )
-
-    return token
-  }
 
   async execute(sessionUserParams: ISessionUserParams) {
     const isValidUser = await this.findUserByEmailRepository.execute(
@@ -37,7 +21,7 @@ export class SessionUserUseCase {
       throw new EmailOrPasswordIncorrect(sessionUserParams.email)
     }
 
-    const tokenJwt = this.token(isValidUser.id, sessionUserParams.email)
+    const tokenJwt = token(isValidUser.id, sessionUserParams.email)
 
     const user = {
       token: tokenJwt,
