@@ -8,13 +8,15 @@ import {
   UserNotFound,
 } from "@/erros/errors"
 import { FindControlleTicketByEventIdRepository } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
+import { UpdateOwnerIdRepository } from "@/ticket/updateOwnerId/update-ownerId-repository"
 
 export class CreateSaleUseCase {
   constructor(
     private readonly createSaleRepository: CreateSaleRepository,
     private readonly findUserByIdRepository: FindUserByIdRepository,
     private readonly findTicketByIdRepository: FindTicketByIdRepository,
-    private readonly findControlleTicketByEventIdRepository: FindControlleTicketByEventIdRepository
+    private readonly findControlleTicketByEventIdRepository: FindControlleTicketByEventIdRepository,
+    private readonly updateOwnerIdRepository: UpdateOwnerIdRepository
   ) {}
 
   async execute(createSaleParams: Sale) {
@@ -42,8 +44,8 @@ export class CreateSaleUseCase {
     const controlleTicket =
       await this.findControlleTicketByEventIdRepository.execute(params)
 
-    if (ticket.qtTicket > controlleTicket[0].qtTicket) {
-      throw new QtTicketUnavailable(ticket.qtTicket)
+    if (createSaleParams.amountTotal > controlleTicket[0].qtTicket) {
+      throw new QtTicketUnavailable(createSaleParams.amountTotal)
     }
 
     const createSale = await this.createSaleRepository.execute(createSaleParams)
