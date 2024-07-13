@@ -50,6 +50,11 @@ export class CreateSaleUseCase {
 
     const createSale = await this.createSaleRepository.execute(createSaleParams)
 
-    return createSale
+    const updateOwnerId = await this.updateOwnerIdRepository.execute(
+      createSaleParams.ticketId,
+      createSaleParams.userId
+    )
+
+    return { createSale, updateOwnerId }
   }
 }
