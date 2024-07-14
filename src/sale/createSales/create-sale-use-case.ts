@@ -9,6 +9,7 @@ import {
 } from "@/erros/errors"
 import { FindControlleTicketByEventIdRepository } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
 import { UpdateOwnerIdRepository } from "@/ticket/updateOwnerId/update-ownerId-repository"
+import { UpdateQtTicketRepository } from "@/controlleTickets/updateQtTicket/update-qtTicket-repository"
 
 export class CreateSaleUseCase {
   constructor(
@@ -16,7 +17,8 @@ export class CreateSaleUseCase {
     private readonly findUserByIdRepository: FindUserByIdRepository,
     private readonly findTicketByIdRepository: FindTicketByIdRepository,
     private readonly findControlleTicketByEventIdRepository: FindControlleTicketByEventIdRepository,
-    private readonly updateOwnerIdRepository: UpdateOwnerIdRepository
+    private readonly updateOwnerIdRepository: UpdateOwnerIdRepository,
+    private readonly updateQtTicketRepository: UpdateQtTicketRepository
   ) {}
 
   async execute(createSaleParams: Sale) {
@@ -50,6 +52,21 @@ export class CreateSaleUseCase {
 
     const createSale = await this.createSaleRepository.execute(createSaleParams)
 
-    return createSale
+    const updateOwnerId = await this.updateOwnerIdRepository.execute(
+      createSaleParams.ticketId,
+      createSaleParams.userId
+    )
+
+    const calcQtTicket =
+      controlleTicket[0].qtTicket - createSaleParams.amountTotal
+
+    const updateQtTicket = {
+      qtSale: calcQtTicket,
+      id: controlleTicket[0].id,
+    }
+
+    const qtTicket = await this.updateQtTicketRepository.execute(updateQtTicket)
+
+    return { createSale, updateOwnerId, qtTicket }
   }
 }

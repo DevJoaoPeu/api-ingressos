@@ -12,6 +12,7 @@ import {
   makeCreateEventController,
   makeDeleteEventController,
   makeFindAllEventsByUserIdController,
+  makeFindAllEventsController,
   makeFindEventByIdController,
   makeUpdateEventController,
 } from "./factories/event"
@@ -307,6 +308,14 @@ router.post("/sale/create", async (request: Request, response: Response) => {
   const createSaleController = makeCreateSaleController()
 
   const { statusCode, body } = await createSaleController.execute(request)
+
+  response.status(statusCode).send(body)
+})
+
+router.get("/event/findAll", async (request: Request, response: Response) => {
+  const findAllEventscontroller = makeFindAllEventsController()
+
+  const { statusCode, body } = await findAllEventscontroller.execute(request)
 
   response.status(statusCode).send(body)
 })

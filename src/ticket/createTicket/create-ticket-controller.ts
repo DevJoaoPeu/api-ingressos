@@ -3,7 +3,7 @@ import { CreateTicketUseCase } from "./create-ticket-use-case"
 import { createTicketSchema } from "@/schemas/ticket"
 import { ITicketParams } from "../type"
 import { ZodError } from "zod"
-import { EventNotFound } from "@/erros/errors"
+import { ControlleTicketExists, EventNotFound } from "@/erros/errors"
 
 export class CreateTicketController {
   constructor(private readonly createTicketUseCase: CreateTicketUseCase) {}
@@ -31,6 +31,11 @@ export class CreateTicketController {
       if (error instanceof ZodError) {
         return badRequest({
           message: error.errors[0].message,
+        })
+      }
+      if (error instanceof ControlleTicketExists) {
+        return badRequest({
+          message: error.message,
         })
       }
       console.error(error)

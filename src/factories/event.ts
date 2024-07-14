@@ -4,6 +4,9 @@ import { CreateEventUseCase } from "@/event/createEvent/create-event-use-case"
 import { DeleteEventController } from "@/event/deleteEvent/delete-event-controller"
 import { DeleteEventRepository } from "@/event/deleteEvent/delete-event-repository"
 import { DeleteEventUseCase } from "@/event/deleteEvent/delete-event-use-case"
+import { FindAllEventsController } from "@/event/findAllEvents/find-all-events-controller"
+import { FindAllEventsRepository } from "@/event/findAllEvents/find-all-events-repository"
+import { FindAllEventsUseCase } from "@/event/findAllEvents/find-all-events-use-case"
 import { FindAllEventsByUserIdController } from "@/event/findAllEventsByUserId/find-all-events-controller"
 import { FindAllEventsByUserIdRepository } from "@/event/findAllEventsByUserId/find-all-events-repository"
 import { FindAllEventsByUserIdUseCase } from "@/event/findAllEventsByUserId/find-all-events-use-case"
@@ -74,4 +77,15 @@ export const makeDeleteEventController = () => {
   const deleteEventController = new DeleteEventController(deleteEventUseCase)
 
   return deleteEventController
+}
+
+export const makeFindAllEventsController = () => {
+  const findAllEventsRepository = new FindAllEventsRepository()
+  const findAllEventsUseCase = new FindAllEventsUseCase(findAllEventsRepository)
+
+  const findAllEventsController = new FindAllEventsController(
+    findAllEventsUseCase
+  )
+
+  return findAllEventsController
 }
