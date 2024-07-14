@@ -8,6 +8,7 @@ CREATE TABLE "user" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "dtCreation" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "role" TEXT NOT NULL DEFAULT 'client',
 
     CONSTRAINT "user_pkey" PRIMARY KEY ("id")
 );

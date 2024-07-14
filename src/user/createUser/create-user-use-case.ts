@@ -29,7 +29,11 @@ export class CreateUserUseCase {
 
     const createdUser = await this.createUserRepository.execute(user)
 
-    const tokenJwt = token(createdUser.id, createUserParams.email)
+    const tokenJwt = token(
+      createdUser.id,
+      createUserParams.email,
+      createUserParams.role
+    )
 
     const createUser = {
       ...createdUser,

@@ -24,6 +24,7 @@ model User {
   email      String   @unique
   password   String
   dtCreation DateTime @default(now())
+  role       String   @default("client")
   sale       Sale[]
   Event      Event[]
 
