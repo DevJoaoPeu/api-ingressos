@@ -1,14 +1,14 @@
 import { ControllerTicket } from "@prisma/client"
 import { CreateControlleTicketRepository } from "./create-controlleTickets-repository"
 import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-repository"
-import { ControlleTicketExists, EventNotFound } from "@/erros/errors"
-import { FindControlleTicketByTypeRepository } from "../findControlleTicketByType/find-controlle-ticket-by-type-repository"
+import { EventNotFound } from "@/erros/errors"
+import { ExistControlleTicket } from "../helper/helper"
 
 export class CreateControlleTicketUseCase {
   constructor(
     private readonly createControlleTicketRepository: CreateControlleTicketRepository,
     private readonly findEventByIdRepository: FindEventByIdRepository,
-    private readonly findControlleTicketByTypeRepository: FindControlleTicketByTypeRepository
+    private readonly existControlleTicket: ExistControlleTicket
   ) {}
   async execute(createControlleTicketParams: ControllerTicket) {
     const eventExists = await this.findEventByIdRepository.execute(
@@ -19,14 +19,7 @@ export class CreateControlleTicketUseCase {
       throw new EventNotFound()
     }
 
-    const findControlleTicket =
-      await this.findControlleTicketByTypeRepository.execute(
-        createControlleTicketParams.type
-      )
-
-    if (findControlleTicket) {
-      throw new ControlleTicketExists(createControlleTicketParams.type)
-    }
+    await this.existControlleTicket.execute(createControlleTicketParams.type)
 
     const createControlleTicket =
       await this.createControlleTicketRepository.execute(

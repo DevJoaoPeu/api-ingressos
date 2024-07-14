@@ -1,4 +1,5 @@
 import { FindControlleTicketByEventIdRepository } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
+import { UpdateQtTicketRepository } from "@/controlleTickets/updateQtTicket/update-qtTicket-repository"
 import { CreateSaleController } from "@/sale/createSales/create-sale-controller"
 import { CreateSaleRepository } from "@/sale/createSales/create-sale-repository"
 import { CreateSaleUseCase } from "@/sale/createSales/create-sale-use-case"
@@ -14,12 +15,15 @@ export const makeCreateSaleController = () => {
     new FindControlleTicketByEventIdRepository()
   const updateOwnerIdRepository = new UpdateOwnerIdRepository()
 
+  const updateQtTicketRepository = new UpdateQtTicketRepository()
+
   const createSaleUseCase = new CreateSaleUseCase(
     createSaleRepository,
     findUserByIdRepository,
     findTicketByIdRepository,
     findControlleTicketByEventIdRepository,
-    updateOwnerIdRepository
+    updateOwnerIdRepository,
+    updateQtTicketRepository
   )
 
   const createSaleController = new CreateSaleController(createSaleUseCase)

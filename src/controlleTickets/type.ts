@@ -18,3 +18,8 @@ export interface IHttpParamsControlleTicket {
     controlleTicketId: string
   }
 }
+
+export interface IUpdateQtTicket {
+  qtSale: number
+  id: string
+}
