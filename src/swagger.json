@@ -472,6 +472,110 @@
           }
         }
       }
+    },
+    "/controlleTicket/create": {
+      "post": {
+        "summary": "Criar ControlleTicket",
+        "description": "Rota para criar ControlleTicket",
+        "tags": ["ControlleTicket"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "ControlleTicket criado com sucesso"
+          }
+        }
+      }
+    },
+    "/controlleTicket/find": {
+      "get": {
+        "summary": "Buscar ControlleTicket por eventId",
+        "description": "Rota para buscar ControlleTicket por eventId",
+        "tags": ["ControlleTicket"],
+        "responses": {
+          "200": {
+            "description": "ControlleTicket encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/controlleTicket/delete/{controlleTicketId}": {
+      "delete": {
+        "summary": "Deletar ControlleTicket",
+        "description": "Rota para deletar ControlleTicket",
+        "tags": ["ControlleTicket"],
+        "parameters": [
+          {
+            "name": "controlleTicketId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "ControlleTicket deletado com sucesso"
+          }
+        }
+      }
+    },
+    "/user/me": {
+      "get": {
+        "summary": "Buscar informações do usuário autenticado",
+        "description": "Rota para buscar informações do usuário autenticado",
+        "tags": ["User"],
+        "responses": {
+          "200": {
+            "description": "Informações do usuário encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sale/create": {
+      "post": {
+        "summary": "Criar venda",
+        "description": "Rota para criar uma nova venda",
+        "tags": ["Sale"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Venda criada com sucesso"
+          }
+        }
+      }
     }
   },
   "components": {
