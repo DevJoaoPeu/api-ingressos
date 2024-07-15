@@ -9,6 +9,12 @@ export class ValidationUserController {
     try {
       const params = httpParams.headers.authorization
 
+      if (!params) {
+        return badRequest({
+          message: "token is required",
+        })
+      }
+
       const [, token] = params.split(" ")
 
       const tokenJwt = await this.validationUserUseCase.execute(token)

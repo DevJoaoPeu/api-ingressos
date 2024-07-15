@@ -7,7 +7,7 @@ import {
   makeUpdateUserController,
   makeValidationUserController,
 } from "@/factories/user"
-import { IUserByIdParams } from "./user/type"
+import { IUserByIdParams, IValidationUser } from "./user/type"
 import {
   makeCreateEventController,
   makeDeleteEventController,
@@ -299,7 +299,15 @@ router.delete(
 router.get("/user/me", async (request: Request, response: Response) => {
   const validationUserController = makeValidationUserController()
 
-  const { statusCode, body } = await validationUserController.execute(request)
+  const validationUserRequest: IValidationUser = {
+    headers: {
+      authorization: request.headers.authorization || "",
+    },
+  }
+
+  const { statusCode, body } = await validationUserController.execute(
+    validationUserRequest
+  )
 
   response.status(statusCode).send(body)
 })
@@ -315,7 +323,7 @@ router.post("/sale/create", async (request: Request, response: Response) => {
 router.get("/event/findAll", async (request: Request, response: Response) => {
   const findAllEventscontroller = makeFindAllEventsController()
 
-  const { statusCode, body } = await findAllEventscontroller.execute(request)
+  const { statusCode, body } = await findAllEventscontroller.execute()
 
   response.status(statusCode).send(body)
 })
