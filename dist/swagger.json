@@ -1,0 +1,662 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API de venda de ingressos",
+        "description": "Esta API tem como objetivo a venda e compra de ingressos.",
+        "contact": {
+            "email": "joaopedroprog.contato@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/user/register": {
+            "post": {
+                "summary": "Criar usuário",
+                "description": "Rota para criar usuário",
+                "tags": ["User"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "summary": "Exemplo de criação de usuário",
+                                    "value": {
+                                        "name": "Joao",
+                                        "email": "joao@teste.com",
+                                        "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/update/{userId}": {
+            "patch": {
+                "summary": "Atualizar usuário",
+                "description": "Rota para atualizar usuário",
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            },
+                            "examples": {
+                                "user": {
+                                    "summary": "Exemplo de atualização de usuário",
+                                    "value": {
+                                        "name": "Joao Atualizado",
+                                        "email": "joao@teste.com",
+                                        "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/delete/{userId}": {
+            "delete": {
+                "summary": "Deletar usuário",
+                "description": "Rota para deletar usuário",
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário deletado com sucesso"
+                    }
+                }
+            }
+        },
+        "/user/session": {
+            "post": {
+                "summary": "Login de usuário",
+                "description": "Rota para login de usuário",
+                "tags": ["User"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SessionUserParams"
+                            },
+                            "examples": {
+                                "user": {
+                                    "summary": "Exemplo de login de usuário",
+                                    "value": {
+                                        "email": "joao@teste.com",
+                                        "password": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login bem-sucedido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "jwt_token_aqui"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    }
+                }
+            }
+        },
+        "/user/find/{userId}": {
+            "get": {
+                "summary": "Buscar usuário por ID",
+                "description": "Rota para buscar usuário por ID",
+                "tags": ["User"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuário encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/event/create": {
+            "post": {
+                "summary": "Criar evento",
+                "description": "Rota para criar evento",
+                "tags": ["Event"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Event"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Evento criado com sucesso"
+                    }
+                }
+            }
+        },
+        "/event/findAll/{userId}": {
+            "get": {
+                "summary": "Buscar todos os eventos de um usuário",
+                "description": "Rota para buscar todos os eventos de um usuário",
+                "tags": ["Event"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Eventos encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/event/findOne/{eventId}": {
+            "get": {
+                "summary": "Buscar evento por ID",
+                "description": "Rota para buscar evento por ID",
+                "tags": ["Event"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Evento encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Event"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/event/update/{eventId}": {
+            "patch": {
+                "summary": "Atualizar evento",
+                "description": "Rota para atualizar evento",
+                "tags": ["Event"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Event"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Evento atualizado com sucesso"
+                    }
+                }
+            }
+        },
+        "/event/delete/{eventId}": {
+            "delete": {
+                "summary": "Deletar evento",
+                "description": "Rota para deletar evento",
+                "tags": ["Event"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Evento deletado com sucesso"
+                    }
+                }
+            }
+        },
+        "/ticket/create": {
+            "post": {
+                "summary": "Criar ticket",
+                "description": "Rota para criar ticket",
+                "tags": ["Ticket"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ticket"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ticket criado com sucesso"
+                    }
+                }
+            }
+        },
+        "/ticket/find/{ticketId}": {
+            "get": {
+                "summary": "Buscar ticket por ID",
+                "description": "Rota para buscar ticket por ID",
+                "tags": ["Ticket"],
+                "parameters": [
+                    {
+                        "name": "ticketId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ticket encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ticket"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ticket/findAll/{eventId}": {
+            "get": {
+                "summary": "Buscar todos os tickets de um evento",
+                "description": "Rota para buscar todos os tickets de um evento",
+                "tags": ["Ticket"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tickets encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ticket"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ticket/findTicket/{eventId}/{type}": {
+            "get": {
+                "summary": "Buscar ticket por tipo",
+                "description": "Rota para buscar ticket por tipo",
+                "tags": ["Ticket"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ticket encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ticket"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ticket/user/findTickets/{userId}": {
+            "get": {
+                "summary": "Buscar tickets por usuário",
+                "description": "Rota para buscar tickets por usuário",
+                "tags": ["Ticket"],
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tickets encontrados",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ticket"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ticket/delete/{eventId}": {
+            "delete": {
+                "summary": "Deletar tickets por evento",
+                "description": "Rota para deletar tickets por evento",
+                "tags": ["Ticket"],
+                "parameters": [
+                    {
+                        "name": "eventId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tickets deletados com sucesso"
+                    }
+                }
+            }
+        },
+        "/controlleTicket/create": {
+            "post": {
+                "summary": "Criar ControlleTicket",
+                "description": "Rota para criar ControlleTicket",
+                "tags": ["ControlleTicket"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ticket"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ControlleTicket criado com sucesso"
+                    }
+                }
+            }
+        },
+        "/controlleTicket/find": {
+            "get": {
+                "summary": "Buscar ControlleTicket por eventId",
+                "description": "Rota para buscar ControlleTicket por eventId",
+                "tags": ["ControlleTicket"],
+                "responses": {
+                    "200": {
+                        "description": "ControlleTicket encontrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Ticket"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/controlleTicket/delete/{controlleTicketId}": {
+            "delete": {
+                "summary": "Deletar ControlleTicket",
+                "description": "Rota para deletar ControlleTicket",
+                "tags": ["ControlleTicket"],
+                "parameters": [
+                    {
+                        "name": "controlleTicketId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ControlleTicket deletado com sucesso"
+                    }
+                }
+            }
+        },
+        "/user/me": {
+            "get": {
+                "summary": "Buscar informações do usuário autenticado",
+                "description": "Rota para buscar informações do usuário autenticado",
+                "tags": ["User"],
+                "responses": {
+                    "200": {
+                        "description": "Informações do usuário encontradas",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/sale/create": {
+            "post": {
+                "summary": "Criar venda",
+                "description": "Rota para criar uma nova venda",
+                "tags": ["Sale"],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Ticket"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Venda criada com sucesso"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "User": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Event": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "dtStart": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "dtEnd": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "location": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Ticket": {
+                "type": "object",
+                "properties": {
+                    "eventId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ownerId": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["PISTA", "VIP"]
+                    },
+                    "price": {
+                        "type": "number",
+                        "format": "decimal"
+                    },
+                    "qtTicket": {
+                        "type": "integer"
+                    },
+                    "dtAvailability": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                }
+            },
+            "SessionUserParams": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
