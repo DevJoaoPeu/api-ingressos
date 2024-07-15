@@ -21,7 +21,11 @@ export class SessionUserUseCase {
       throw new EmailOrPasswordIncorrect(sessionUserParams.email)
     }
 
-    const tokenJwt = token(isValidUser.id, sessionUserParams.email)
+    const tokenJwt = token(
+      isValidUser.id,
+      sessionUserParams.email,
+      isValidUser.role
+    )
 
     const user = {
       token: tokenJwt,
