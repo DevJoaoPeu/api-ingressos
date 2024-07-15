@@ -14,10 +14,10 @@ export class UpdateEventUseCase {
     const existingEvent = await this.findEventByIdRepository.execute(eventId)
 
     const validationDateParams = validationDate(
-      updateEventParams.dtStart,
-      updateEventParams.dtEnd,
-      existingEvent?.dtStart,
-      existingEvent?.dtEnd
+      updateEventParams.dtStart?.toISOString() || "",
+      updateEventParams.dtEnd?.toISOString() || "",
+      existingEvent?.dtStart?.toISOString() || "",
+      existingEvent?.dtEnd?.toISOString() || ""
     )
 
     if (validationDateParams) {
