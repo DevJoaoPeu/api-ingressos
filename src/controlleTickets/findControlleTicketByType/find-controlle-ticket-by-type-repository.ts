@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma/PrismaClient/prisma"
+import { prisma } from "../../prisma/PrismaClient/prisma"
 import { TicketType } from "@prisma/client"
 
 export class FindControlleTicketByTypeRepository {

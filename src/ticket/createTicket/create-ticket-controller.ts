@@ -1,9 +1,9 @@
-import { badRequest, created, serverError } from "@/erros/http"
+import { badRequest, created, serverError } from "../../erros/http"
 import { CreateTicketUseCase } from "./create-ticket-use-case"
-import { createTicketSchema } from "@/schemas/ticket"
+import { createTicketSchema } from "../../schemas/ticket"
 import { ITicketParams } from "../type"
 import { ZodError } from "zod"
-import { ControlleTicketExists, EventNotFound } from "@/erros/errors"
+import { ControlleTicketExists, EventNotFound } from "../../erros/errors"
 
 export class CreateTicketController {
   constructor(private readonly createTicketUseCase: CreateTicketUseCase) {}

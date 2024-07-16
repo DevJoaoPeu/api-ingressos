@@ -1,8 +1,8 @@
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { IFindTicketParamsId } from "../type"
-import { ticketNotFoundResponse } from "@/erros/validation"
+import { ticketNotFoundResponse } from "../../erros/validation"
 import { FindTicketByIdUseCase } from "./find-ticket-by-id-use-case"
-import { isValidIdSchema } from "@/schemas/ticket"
+import { isValidIdSchema } from "../../schemas/ticket"
 import { ZodError } from "zod"
 
 export class FindTicketByIdController {

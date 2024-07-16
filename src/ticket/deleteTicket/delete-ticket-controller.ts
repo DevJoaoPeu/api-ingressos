@@ -1,7 +1,7 @@
-import { IEventByIdParams } from "@/event/types"
+import { IEventByIdParams } from "../../event/types"
 import { DeleteTicketUseCase } from "./delete-ticket-use-case"
-import { badRequest, ok, serverError } from "@/erros/http"
-import { isValidIdSchema } from "@/schemas/event"
+import { badRequest, ok, serverError } from "../../erros/http"
+import { isValidIdSchema } from "../../schemas/event"
 import { ZodError } from "zod"
 
 export class DeleteTicketController {

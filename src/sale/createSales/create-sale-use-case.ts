@@ -1,15 +1,15 @@
 import { Sale } from "@prisma/client"
 import { CreateSaleRepository } from "./create-sale-repository"
-import { FindUserByIdRepository } from "@/user/findUserById/find-user-by-id-repository"
-import { FindTicketByIdRepository } from "@/ticket/findTicketById/find-ticket-by-id-repository"
+import { FindUserByIdRepository } from "../../user/findUserById/find-user-by-id-repository"
+import { FindTicketByIdRepository } from "../../ticket/findTicketById/find-ticket-by-id-repository"
 import {
   QtTicketUnavailable,
   TicketNotFound,
   UserNotFound,
-} from "@/erros/errors"
-import { FindControlleTicketByEventIdRepository } from "@/controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
-import { UpdateOwnerIdRepository } from "@/ticket/updateOwnerId/update-ownerId-repository"
-import { UpdateQtTicketRepository } from "@/controlleTickets/updateQtTicket/update-qtTicket-repository"
+} from "../../erros/errors"
+import { FindControlleTicketByEventIdRepository } from "../../controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
+import { UpdateOwnerIdRepository } from "../../ticket/updateOwnerId/update-ownerId-repository"
+import { UpdateQtTicketRepository } from "../../controlleTickets/updateQtTicket/update-qtTicket-repository"
 
 export class CreateSaleUseCase {
   constructor(

@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma/PrismaClient/prisma"
+import { prisma } from "../../prisma/PrismaClient/prisma"
 import { TicketType } from "@prisma/client"
 import { Decimal } from "@prisma/client/runtime/library"
 

@@ -1,8 +1,8 @@
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { IHttpParamsFindControlleTicket } from "../type"
 import { FindControlleTicketByEventIdUseCase } from "./find-controlleTicket-by-eventId-use-case"
 import { ZodError } from "zod"
-import { findControlleTicketSchema } from "@/schemas/controlleTicket"
+import { findControlleTicketSchema } from "../../schemas/controlleTicket"
 
 export class FindControlleTicketByEventIdController {
   constructor(

@@ -1,9 +1,9 @@
-import { FindEventByIdRepository } from "@/event/findEventById/find-event-by-id-repository"
+import { FindEventByIdRepository } from "../../event/findEventById/find-event-by-id-repository"
 import { CreateTicketRepository } from "./create-ticket-repository"
-import { EventNotFound } from "@/erros/errors"
+import { EventNotFound } from "../../erros/errors"
 import { Ticket } from "@prisma/client"
-import { CreateControlleTicketRepository } from "@/controlleTickets/createControlleTicket/create-controlleTickets-repository"
-import { ExistControlleTicket } from "@/controlleTickets/helper/helper"
+import { CreateControlleTicketRepository } from "../../controlleTickets/createControlleTicket/create-controlleTickets-repository"
+import { ExistControlleTicket } from "../../controlleTickets/helper/helper"
 
 export class CreateTicketUseCase {
   constructor(

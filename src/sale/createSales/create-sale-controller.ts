@@ -1,10 +1,10 @@
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { CreateSaleUseCase } from "./create-sale-use-case"
 import {
   QtTicketUnavailable,
   TicketNotFound,
   UserNotFound,
-} from "@/erros/errors"
+} from "../../erros/errors"
 import { IHttpParamsSale } from "../type"
 
 export class CreateSaleController {

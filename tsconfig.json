@@ -9,9 +9,6 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
     "resolveJsonModule": true,
     "esModuleInterop": true
   }

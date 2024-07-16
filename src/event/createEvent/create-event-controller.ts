@@ -1,10 +1,10 @@
-import { createEventSchema } from "@/schemas/event"
+import { createEventSchema } from "../../schemas/event"
 import { IEventHttpRequest } from "../types"
 import { CreateEventUseCase } from "./create-event-use-case"
-import { badRequest, created, serverError } from "@/erros/http"
+import { badRequest, created, serverError } from "../../erros/http"
 import { ZodError } from "zod"
-import { DateInvalid, IdNotFound } from "@/erros/errors"
-import { NotAuthorized } from "@/erros/errors"
+import { DateInvalid, IdNotFound } from "../../erros/errors"
+import { NotAuthorized } from "../../erros/errors"
 
 export class CreateEventController {
   constructor(private readonly createEventUseCase: CreateEventUseCase) {}

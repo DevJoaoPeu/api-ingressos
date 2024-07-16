@@ -1,6 +1,6 @@
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
 import { UpdateUserRepository } from "./update-user-repository"
-import { EmailAlreadyExists } from "@/erros/errors"
+import { EmailAlreadyExists } from "../../erros/errors"
 import { hash } from "bcrypt"
 import { User } from "@prisma/client"
 

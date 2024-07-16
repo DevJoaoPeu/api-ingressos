@@ -1,4 +1,4 @@
-import { ok, serverError } from "@/erros/http"
+import { ok, serverError } from "../../erros/http"
 import { FindAllEventsUseCase } from "./find-all-events-use-case"
 
 export class FindAllEventsController {

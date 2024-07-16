@@ -1,9 +1,9 @@
 import { DeleteControlleTicketUseCase } from "./delete-controlleTicket-use-case"
-import { badRequest, ok, serverError } from "@/erros/http"
-import { isValidControlleTicketIdSchema } from "@/schemas/controlleTicket"
+import { badRequest, ok, serverError } from "../../erros/http"
+import { isValidControlleTicketIdSchema } from "../../schemas/controlleTicket"
 import { ZodError } from "zod"
 import { IHttpParamsControlleTicket } from "../type"
-import { controlleTicketNotFoundResponse } from "@/erros/validation"
+import { controlleTicketNotFoundResponse } from "../../erros/validation"
 
 export class DeleteControlleTicketController {
   constructor(

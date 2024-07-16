@@ -1,8 +1,8 @@
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { DeleteEventUseCase } from "./delete-event-use-case"
 import { IEventByIdParams } from "../types"
-import { eventNotFoundResponse } from "@/erros/validation"
-import { isValidIdSchema } from "@/schemas/event"
+import { eventNotFoundResponse } from "../../erros/validation"
+import { isValidIdSchema } from "../../schemas/event"
 import { ZodError } from "zod"
 
 export class DeleteEventController {

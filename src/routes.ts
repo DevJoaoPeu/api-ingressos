@@ -6,7 +6,7 @@ import {
   makeSessionUserController,
   makeUpdateUserController,
   makeValidationUserController,
-} from "@/factories/user"
+} from "./factories/user"
 import { IUserByIdParams, IValidationUser } from "./user/type"
 import {
   makeCreateEventController,

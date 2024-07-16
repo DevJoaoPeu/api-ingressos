@@ -1,4 +1,4 @@
-import { ControlleTicketExists } from "@/erros/errors"
+import { ControlleTicketExists } from "../../erros/errors"
 import { FindControlleTicketByTypeRepository } from "../findControlleTicketByType/find-controlle-ticket-by-type-repository"
 import { TicketType } from "@prisma/client"
 

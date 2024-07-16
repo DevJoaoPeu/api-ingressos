@@ -1,4 +1,4 @@
-import { prisma } from "@/prisma/PrismaClient/prisma"
+import { prisma } from "../../prisma/PrismaClient/prisma"
 import { IFindControlleTicketParams } from "../type"
 
 export class FindControlleTicketByEventIdRepository {

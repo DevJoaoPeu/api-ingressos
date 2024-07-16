@@ -1,8 +1,8 @@
-import { userNotFoundResponse } from "@/erros/validation"
+import { userNotFoundResponse } from "../../erros/validation"
 import { IUserByIdParams } from "../type"
 import { FindUserByIdUseCase } from "./find-user-by-id-use-case"
-import { badRequest, ok, serverError } from "@/erros/http"
-import { isValidIdSchema } from "@/schemas/user"
+import { badRequest, ok, serverError } from "../../erros/http"
+import { isValidIdSchema } from "../../schemas/user"
 import { ZodError } from "zod"
 
 export class FindUserByIdController {

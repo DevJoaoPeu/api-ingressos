@@ -1,4 +1,4 @@
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { ValidationUserUseCase } from "./validation-user-use-case"
 import { JsonWebTokenError } from "jsonwebtoken"
 import { IValidationUser } from "../type"

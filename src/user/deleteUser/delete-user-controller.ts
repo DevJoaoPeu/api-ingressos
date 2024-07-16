@@ -1,8 +1,8 @@
-import { userNotFoundResponse } from "@/erros/validation"
+import { userNotFoundResponse } from "../../erros/validation"
 import { DeleteUserUseCase } from "./delete-user-use-case"
-import { badRequest, ok, serverError } from "@/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { IUserByIdParams } from "../type"
-import { isValidIdSchema } from "@/schemas/user"
+import { isValidIdSchema } from "../../schemas/user"
 import { ZodError } from "zod"
 
 export class DeleteUserController {

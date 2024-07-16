@@ -1,10 +1,10 @@
-import { badRequest, ok, serverError } from "@/erros/http"
-import { IUpdateUserParams } from "@/user/type"
+import { badRequest, ok, serverError } from "../../erros/http"
+import { IUpdateUserParams } from "../../user/type"
 import { UpdateUserUseCase } from "./update-user-use-case"
-import { updateUserSchema } from "@/schemas/user"
-import { userNotFoundResponse } from "@/erros/validation"
+import { updateUserSchema } from "../../schemas/user"
+import { userNotFoundResponse } from "../../erros/validation"
 import { ZodError } from "zod"
-import { EmailAlreadyExists } from "@/erros/errors"
+import { EmailAlreadyExists } from "../../erros/errors"
 import { User } from "@prisma/client"
 
 export class UpdateUserController {

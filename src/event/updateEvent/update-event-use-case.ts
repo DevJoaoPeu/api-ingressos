@@ -1,4 +1,4 @@
-import { DateInvalid } from "@/erros/errors"
+import { DateInvalid } from "../../erros/errors"
 import { FindEventByIdRepository } from "../findEventById/find-event-by-id-repository"
 import { UpdateEventRepository } from "./update-event-repository"
 import { validationDate } from "../utils/validation-date"

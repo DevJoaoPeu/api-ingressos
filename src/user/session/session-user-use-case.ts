@@ -1,6 +1,6 @@
-import { EmailOrPasswordIncorrect } from "@/erros/errors"
+import { EmailOrPasswordIncorrect } from "../../erros/errors"
 import { FindUserByEmailRepository } from "../findUserByEmail/find-user-by-email-repository"
-import { ISessionUserParams } from "@/user/type"
+import { ISessionUserParams } from "../../user/type"
 import { compare } from "bcrypt"
 import { token } from "../helper/auth/token"
 
