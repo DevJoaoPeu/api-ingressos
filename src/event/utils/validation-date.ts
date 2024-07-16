@@ -1,22 +1,25 @@
-import { parseISO, isBefore, isAfter, isEqual } from "date-fns"
+import { parseISO } from "date-fns"
 
 export const validationDate = (
-  paramsDtStart: string,
-  paramsDtEnd: string,
-  dataBaseDtStart: string,
-  dataBaseDtEnd: string
-) => {
-  const dtStart = paramsDtStart ? parseISO(paramsDtStart) : false
-  const dtEnd = paramsDtEnd ? parseISO(paramsDtEnd) : false
+  paramsDtStart: string | undefined,
+  paramsDtEnd: string | undefined,
+  dataBaseDtStart: number | undefined,
+  dataBaseDtEnd: number | undefined
+): boolean => {
+  const startDate = paramsDtStart ? parseISO(paramsDtStart).getTime() : null
+  const endDate = paramsDtEnd ? parseISO(paramsDtEnd).getTime() : null
 
-  if (dtStart && dtEnd) {
-    if (isEqual(dtStart, dtEnd)) {
-      return true
-    }
-    if (isAfter(dtStart, dataBaseDtStart) || isBefore(dtEnd, dataBaseDtEnd)) {
-      return true
-    }
-
-    return false
+  if (startDate !== null && endDate !== null) {
+    return startDate >= endDate
   }
+
+  if (startDate !== null) {
+    return startDate >= dataBaseDtEnd
+  }
+
+  if (endDate !== null) {
+    return endDate <= dataBaseDtStart
+  }
+
+  return false
 }

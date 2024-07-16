@@ -16,8 +16,8 @@ export class UpdateEventUseCase {
     const validationDateParams = validationDate(
       updateEventParams.dtStart,
       updateEventParams.dtEnd,
-      existingEvent?.dtStart,
-      existingEvent?.dtEnd
+      existingEvent?.dtStart.getTime(),
+      existingEvent?.dtEnd.getTime()
     )
 
     if (validationDateParams) {
