@@ -10,6 +10,9 @@ import { FindUserByIdRepository } from "../user/findUserById/find-user-by-id-rep
 import { FindAllSalesByUserIdController } from "src/sale/findAllSalesByUserId/find-all-sales-by-user-id-controller"
 import { FindSaleByIdUseCase } from "src/sale/findSaleById/find-sale-by-id-use-case"
 import { FindSaleByIdController } from "src/sale/findSaleById/find-sale-by-id-controller"
+import { DeleteSaleRepository } from "src/sale/deleteSale/delete-sale-repository"
+import { DeleteSaleUseCase } from "src/sale/deleteSale/delete-sale-use-case"
+import { DeleteSaleController } from "src/sale/deleteSale/delete-sale-controller"
 
 export const makeCreateSaleController = () => {
   const createSaleRepository = new CreateSaleRepository()
@@ -51,4 +54,13 @@ export const makeFindSaleByIdController = () => {
   const findSaleByIdController = new FindSaleByIdController(findSaleByIdUseCase)
 
   return findSaleByIdController
+}
+
+export const makeDeleteSaleController = () => {
+  const deleteSaleRepository = new DeleteSaleRepository()
+  const deleteSaleUseCase = new DeleteSaleUseCase(deleteSaleRepository)
+
+  const deleteSaleController = new DeleteSaleController(deleteSaleUseCase)
+
+  return deleteSaleController
 }

@@ -35,6 +35,7 @@ import {
 } from "./factories/controlleTicket"
 import {
   makeCreateSaleController,
+  makeDeleteSaleController,
   makeFindAllSalesByUserIdController,
   makeFindSaleByIdController,
 } from "./factories/sale"
@@ -351,6 +352,17 @@ router.get(
     const findSaleByIdController = makeFindSaleByIdController()
 
     const { statusCode, body } = await findSaleByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.delete(
+  "/sale/delete/:saleId",
+  async (request: Request<{ saleId: string }>, response: Response) => {
+    const deleteSaleController = makeDeleteSaleController()
+
+    const { statusCode, body } = await deleteSaleController.execute(request)
 
     response.status(statusCode).send(body)
   }
