@@ -1,3 +1,4 @@
+import { FindAllSalesByUserIdUseCase } from "src/sale/findAllSalesByUserId/find-all-sales-by-user-id-use-case"
 import { FindControlleTicketByEventIdRepository } from "../controlleTickets/findControlleTicketByEventId/find-controlleTicket-by-eventId-repository"
 import { UpdateQtTicketRepository } from "../controlleTickets/updateQtTicket/update-qtTicket-repository"
 import { CreateSaleController } from "../sale/createSales/create-sale-controller"
@@ -6,6 +7,7 @@ import { CreateSaleUseCase } from "../sale/createSales/create-sale-use-case"
 import { FindTicketByIdRepository } from "../ticket/findTicketById/find-ticket-by-id-repository"
 import { UpdateOwnerIdRepository } from "../ticket/updateOwnerId/update-ownerId-repository"
 import { FindUserByIdRepository } from "../user/findUserById/find-user-by-id-repository"
+import { FindAllSalesByUserIdController } from "src/sale/findAllSalesByUserId/find-all-sales-by-user-id-controller"
 
 export const makeCreateSaleController = () => {
   const createSaleRepository = new CreateSaleRepository()
@@ -29,4 +31,14 @@ export const makeCreateSaleController = () => {
   const createSaleController = new CreateSaleController(createSaleUseCase)
 
   return createSaleController
+}
+
+export const makeFindAllSalesByUserIdController = () => {
+  const findAllSalesByUserIdUseCase = new FindAllSalesByUserIdUseCase()
+
+  const findAllSalesByUserIdController = new FindAllSalesByUserIdController(
+    findAllSalesByUserIdUseCase
+  )
+
+  return findAllSalesByUserIdController
 }

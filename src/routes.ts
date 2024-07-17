@@ -33,7 +33,10 @@ import {
   makeDeleteControlleTicketController,
   makeFindControlleTicketByEventIdController,
 } from "./factories/controlleTicket"
-import { makeCreateSaleController } from "./factories/sale"
+import {
+  makeCreateSaleController,
+  makeFindAllSalesByUserIdController,
+} from "./factories/sale"
 
 const router = Router()
 
@@ -327,5 +330,18 @@ router.get("/event/findAll", async (request: Request, response: Response) => {
 
   response.status(statusCode).send(body)
 })
+
+router.get(
+  "/sale/findAll/:userId",
+  async (request: Request<{ userId: string }>, response: Response) => {
+    const findAllSalesByUserIdController = makeFindAllSalesByUserIdController()
+
+    const { statusCode, body } = await findAllSalesByUserIdController.execute(
+      request
+    )
+
+    response.status(statusCode).send(body)
+  }
+)
 
 export { router }
