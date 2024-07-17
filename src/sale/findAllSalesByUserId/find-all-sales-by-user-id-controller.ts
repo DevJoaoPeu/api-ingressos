@@ -1,7 +1,7 @@
-import { badRequest, ok, serverError } from "src/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { FindAllSalesByUserIdUseCase } from "./find-all-sales-by-user-id-use-case"
-import { isValidIdSchema } from "src/schemas/user"
-import { IUserByIdParams } from "src/user/type"
+import { isValidIdSchema } from "../../schemas/user"
+import { IUserByIdParams } from "../../user/type"
 import { ZodError } from "zod"
 
 export class FindAllSalesByUserIdController {

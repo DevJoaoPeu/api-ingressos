@@ -1,8 +1,8 @@
-import { badRequest, ok, serverError } from "src/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { ISaleIdParams } from "../type"
-import { isValidIdSchema } from "src/schemas/sale"
+import { isValidIdSchema } from "../../schemas/sale"
 import { DeleteSaleUseCase } from "./delete-sale-use-case"
-import { saleNotFoundResponse } from "src/erros/validation"
+import { saleNotFoundResponse } from "../../erros/validation"
 import { ZodError } from "zod"
 
 export class DeleteSaleController {

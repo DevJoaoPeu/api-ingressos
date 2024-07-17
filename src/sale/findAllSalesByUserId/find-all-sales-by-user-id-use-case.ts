@@ -1,4 +1,4 @@
-import { prisma } from "src/prisma/PrismaClient/prisma"
+import { prisma } from "../../prisma/PrismaClient/prisma"
 
 export class FindAllSalesByUserIdUseCase {
   async execute(userId: string) {

@@ -1,9 +1,9 @@
-import { isValidIdSchema } from "src/schemas/sale"
+import { isValidIdSchema } from "../../schemas/sale"
 import { ISaleIdParams } from "../type"
-import { badRequest, ok, serverError } from "src/erros/http"
+import { badRequest, ok, serverError } from "../../erros/http"
 import { ZodError } from "zod"
 import { FindSaleByIdUseCase } from "./find-sale-by-id-use-case"
-import { saleNotFoundResponse } from "src/erros/validation"
+import { saleNotFoundResponse } from "../../erros/validation"
 
 export class FindSaleByIdController {
   constructor(private readonly findSaleByIdUseCase: FindSaleByIdUseCase) {}
