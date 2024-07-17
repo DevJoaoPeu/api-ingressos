@@ -33,7 +33,12 @@ import {
   makeDeleteControlleTicketController,
   makeFindControlleTicketByEventIdController,
 } from "./factories/controlleTicket"
-import { makeCreateSaleController } from "./factories/sale"
+import {
+  makeCreateSaleController,
+  makeDeleteSaleController,
+  makeFindAllSalesByUserIdController,
+  makeFindSaleByIdController,
+} from "./factories/sale"
 
 const router = Router()
 
@@ -327,5 +332,40 @@ router.get("/event/findAll", async (request: Request, response: Response) => {
 
   response.status(statusCode).send(body)
 })
+
+router.get(
+  "/sale/findAll/:userId",
+  async (request: Request<{ userId: string }>, response: Response) => {
+    const findAllSalesByUserIdController = makeFindAllSalesByUserIdController()
+
+    const { statusCode, body } = await findAllSalesByUserIdController.execute(
+      request
+    )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/sale/findOne/:saleId",
+  async (request: Request<{ saleId: string }>, response: Response) => {
+    const findSaleByIdController = makeFindSaleByIdController()
+
+    const { statusCode, body } = await findSaleByIdController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.delete(
+  "/sale/delete/:saleId",
+  async (request: Request<{ saleId: string }>, response: Response) => {
+    const deleteSaleController = makeDeleteSaleController()
+
+    const { statusCode, body } = await deleteSaleController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
 
 export { router }
