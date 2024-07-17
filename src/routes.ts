@@ -36,6 +36,7 @@ import {
 import {
   makeCreateSaleController,
   makeFindAllSalesByUserIdController,
+  makeFindSaleByIdController,
 } from "./factories/sale"
 
 const router = Router()
@@ -339,6 +340,17 @@ router.get(
     const { statusCode, body } = await findAllSalesByUserIdController.execute(
       request
     )
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/sale/findOne/:saleId",
+  async (request: Request<{ saleId: string }>, response: Response) => {
+    const findSaleByIdController = makeFindSaleByIdController()
+
+    const { statusCode, body } = await findSaleByIdController.execute(request)
 
     response.status(statusCode).send(body)
   }

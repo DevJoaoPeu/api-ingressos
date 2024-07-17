@@ -8,6 +8,8 @@ import { FindTicketByIdRepository } from "../ticket/findTicketById/find-ticket-b
 import { UpdateOwnerIdRepository } from "../ticket/updateOwnerId/update-ownerId-repository"
 import { FindUserByIdRepository } from "../user/findUserById/find-user-by-id-repository"
 import { FindAllSalesByUserIdController } from "src/sale/findAllSalesByUserId/find-all-sales-by-user-id-controller"
+import { FindSaleByIdUseCase } from "src/sale/findSaleById/find-sale-by-id-use-case"
+import { FindSaleByIdController } from "src/sale/findSaleById/find-sale-by-id-controller"
 
 export const makeCreateSaleController = () => {
   const createSaleRepository = new CreateSaleRepository()
@@ -41,4 +43,12 @@ export const makeFindAllSalesByUserIdController = () => {
   )
 
   return findAllSalesByUserIdController
+}
+
+export const makeFindSaleByIdController = () => {
+  const findSaleByIdUseCase = new FindSaleByIdUseCase()
+
+  const findSaleByIdController = new FindSaleByIdController(findSaleByIdUseCase)
+
+  return findSaleByIdController
 }
