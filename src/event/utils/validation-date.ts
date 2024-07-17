@@ -3,8 +3,8 @@ import { parseISO } from "date-fns"
 export const validationDate = (
   paramsDtStart: string | undefined,
   paramsDtEnd: string | undefined,
-  dataBaseDtStart: number | undefined,
-  dataBaseDtEnd: number | undefined
+  dataBaseDtStart: number,
+  dataBaseDtEnd: number
 ): boolean => {
   const startDate = paramsDtStart ? parseISO(paramsDtStart).getTime() : null
   const endDate = paramsDtEnd ? parseISO(paramsDtEnd).getTime() : null
