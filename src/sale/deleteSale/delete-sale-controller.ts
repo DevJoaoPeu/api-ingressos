@@ -1,8 +1,9 @@
-import { ok, serverError } from "src/erros/http"
+import { badRequest, ok, serverError } from "src/erros/http"
 import { ISaleIdParams } from "../type"
 import { isValidIdSchema } from "src/schemas/sale"
 import { DeleteSaleUseCase } from "./delete-sale-use-case"
 import { saleNotFoundResponse } from "src/erros/validation"
+import { ZodError } from "zod"
 
 export class DeleteSaleController {
   constructor(private readonly deleteSaleUseCase: DeleteSaleUseCase) {}
@@ -20,6 +21,11 @@ export class DeleteSaleController {
 
       return ok(deleteSale)
     } catch (error) {
+      if (error instanceof ZodError) {
+        return badRequest({
+          message: error.errors[0].message,
+        })
+      }
       console.error(error)
       return serverError()
     }
