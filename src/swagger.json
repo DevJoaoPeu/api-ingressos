@@ -565,7 +565,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Ticket"
+                "$ref": "#/components/schemas/Sale"
               }
             }
           }
@@ -573,6 +573,86 @@
         "responses": {
           "200": {
             "description": "Venda criada com sucesso"
+          }
+        }
+      }
+    },
+    "/sale/findAll/{userId}": {
+      "get": {
+        "summary": "Buscar todas as vendas de um usuário",
+        "description": "Rota para buscar todas as vendas de um usuário",
+        "tags": ["Sale"],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendas encontradas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sale"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sale/findOne/{saleId}": {
+      "get": {
+        "summary": "Buscar venda por ID",
+        "description": "Rota para buscar venda por ID",
+        "tags": ["Sale"],
+        "parameters": [
+          {
+            "name": "saleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Venda encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Sale"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sale/delete/{saleId}": {
+      "delete": {
+        "summary": "Deletar venda",
+        "description": "Rota para deletar venda",
+        "tags": ["Sale"],
+        "parameters": [
+          {
+            "name": "saleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Venda deletada com sucesso"
           }
         }
       }
@@ -654,6 +734,30 @@
           },
           "password": {
             "type": "string"
+          }
+        }
+      },
+      "Sale": {
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "buyerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "totalAmount": {
+            "type": "number",
+            "format": "decimal"
+          },
+          "transactionDate": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       }
