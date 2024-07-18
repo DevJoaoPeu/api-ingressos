@@ -6,12 +6,15 @@ import {
   UserNotFound,
 } from "../../erros/errors"
 import { IHttpParamsSale } from "../type"
+import { saleSchema } from "src/schemas/sale"
 
 export class CreateSaleController {
   constructor(private readonly createSaleUseCase: CreateSaleUseCase) {}
   async execute(httpParams: IHttpParamsSale) {
     try {
       const params = httpParams.body
+
+      await saleSchema.parseAsync(params)
 
       const createSale = await this.createSaleUseCase.execute(params)
 
