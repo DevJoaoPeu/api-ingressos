@@ -9,7 +9,7 @@ export class IdNotFound extends Error {
 
 export class DateInvalid extends Error {
   constructor() {
-    super(`End date cannot be greater than start date`)
+    super(`End date cannot be greater than start datee`)
     this.name = "DateInvalid"
   }
 }
