@@ -170,16 +170,21 @@ router.delete(
   }
 )
 
-router.post("/ticket/create", async (request: Request, response: Response) => {
-  const createTicketController = makeCreateTicketController()
+router.post(
+  "/ticket/create",
+  isAuthenticated,
+  async (request: Request, response: Response) => {
+    const createTicketController = makeCreateTicketController()
 
-  const { statusCode, body } = await createTicketController.execute(request)
+    const { statusCode, body } = await createTicketController.execute(request)
 
-  response.status(statusCode).send(body)
-})
+    response.status(statusCode).send(body)
+  }
+)
 
 router.get(
   "/ticket/find/:ticketId",
+  isAuthenticated,
   async (
     request: Request<{ ticketId: string }, IFindTicketParamsId>,
     response: Response
@@ -194,6 +199,7 @@ router.get(
 
 router.get(
   "/ticket/findAll/:eventId",
+  isAuthenticated,
   async (
     request: Request<{ eventId: string }, IEventByIdParams>,
     response: Response
@@ -211,6 +217,7 @@ router.get(
 
 router.get(
   "/ticket/findTicket/:eventId/:type",
+  isAuthenticated,
   async (
     request: Request<
       { eventId: string; type: TicketType },
@@ -230,6 +237,7 @@ router.get(
 
 router.get(
   "/ticket/user/findTickets/:userId",
+  isAuthenticated,
   async (
     request: Request<{ userId: string }, IUserByIdParams>,
     response: Response
@@ -246,6 +254,7 @@ router.get(
 
 router.delete(
   "/ticket/delete/:eventId",
+  isAuthenticated,
   async (
     request: Request<{ eventId: string }, IEventByIdParams>,
     response: Response
@@ -260,6 +269,7 @@ router.delete(
 
 router.post(
   "/controlleTicket/create",
+  isAuthenticated,
   async (request: Request, response: Response) => {
     const createControlleTicketController =
       makeCreateControlleTicketController()
@@ -274,6 +284,7 @@ router.post(
 
 router.get(
   "/controlleTicket/find",
+  isAuthenticated,
   async (request: Request, response: Response) => {
     const findControlleTicketByEventIdController =
       makeFindControlleTicketByEventIdController()
@@ -287,6 +298,7 @@ router.get(
 
 router.delete(
   "/controlleTicket/delete/:controlleTicketId",
+  isAuthenticated,
   async (
     request: Request<{ controlleTicketId: string }>,
     response: Response
@@ -301,40 +313,53 @@ router.delete(
   }
 )
 
-router.get("/user/me", async (request: Request, response: Response) => {
-  const validationUserController = makeValidationUserController()
+router.get(
+  "/user/me",
+  isAuthenticated,
+  async (request: Request, response: Response) => {
+    const validationUserController = makeValidationUserController()
 
-  const validationUserRequest: IValidationUser = {
-    headers: {
-      authorization: request.headers.authorization || "",
-    },
+    const validationUserRequest: IValidationUser = {
+      headers: {
+        authorization: request.headers.authorization || "",
+      },
+    }
+
+    const { statusCode, body } = await validationUserController.execute(
+      validationUserRequest
+    )
+
+    response.status(statusCode).send(body)
   }
+)
 
-  const { statusCode, body } = await validationUserController.execute(
-    validationUserRequest
-  )
+router.post(
+  "/sale/create",
+  isAuthenticated,
+  async (request: Request, response: Response) => {
+    const createSaleController = makeCreateSaleController()
 
-  response.status(statusCode).send(body)
-})
+    const { statusCode, body } = await createSaleController.execute(request)
 
-router.post("/sale/create", async (request: Request, response: Response) => {
-  const createSaleController = makeCreateSaleController()
+    response.status(statusCode).send(body)
+  }
+)
 
-  const { statusCode, body } = await createSaleController.execute(request)
+router.get(
+  "/event/findAll",
+  isAuthenticated,
+  async (request: Request, response: Response) => {
+    const findAllEventscontroller = makeFindAllEventsController()
 
-  response.status(statusCode).send(body)
-})
+    const { statusCode, body } = await findAllEventscontroller.execute()
 
-router.get("/event/findAll", async (request: Request, response: Response) => {
-  const findAllEventscontroller = makeFindAllEventsController()
-
-  const { statusCode, body } = await findAllEventscontroller.execute()
-
-  response.status(statusCode).send(body)
-})
+    response.status(statusCode).send(body)
+  }
+)
 
 router.get(
   "/sale/findAll/:userId",
+  isAuthenticated,
   async (request: Request<{ userId: string }>, response: Response) => {
     const findAllSalesByUserIdController = makeFindAllSalesByUserIdController()
 
@@ -348,6 +373,7 @@ router.get(
 
 router.get(
   "/sale/findOne/:saleId",
+  isAuthenticated,
   async (request: Request<{ saleId: string }>, response: Response) => {
     const findSaleByIdController = makeFindSaleByIdController()
 
@@ -359,6 +385,7 @@ router.get(
 
 router.delete(
   "/sale/delete/:saleId",
+  isAuthenticated,
   async (request: Request<{ saleId: string }>, response: Response) => {
     const deleteSaleController = makeDeleteSaleController()
 
