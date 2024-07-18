@@ -6,7 +6,7 @@ import {
   UserNotFound,
 } from "../../erros/errors"
 import { IHttpParamsSale } from "../type"
-import { saleSchema } from "src/schemas/sale"
+import { saleSchema } from "../../schemas/sale"
 
 export class CreateSaleController {
   constructor(private readonly createSaleUseCase: CreateSaleUseCase) {}

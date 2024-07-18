@@ -31,3 +31,13 @@ export const saleSchema = z.object({
       message: "amountTotal is required",
     }),
 })
+
+export const isValidIdSchema = z.object({
+  saleId: z
+    .string({
+      message: "saleId is required",
+    })
+    .uuid({
+      message: "Uuid is invalid",
+    }),
+})
