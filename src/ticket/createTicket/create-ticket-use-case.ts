@@ -28,7 +28,10 @@ export class CreateTicketUseCase {
       eventId: createTicketParams.eventId,
     }
 
-    await this.existControlleTicket.execute(createTicketParams.type)
+    await this.existControlleTicket.execute(
+      createTicketParams.type,
+      createTicketParams.eventId
+    )
 
     const createControlleTicket =
       await this.createControlleTicketRepository.execute(paramsControlleTicket)

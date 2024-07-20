@@ -19,7 +19,10 @@ export class CreateControlleTicketUseCase {
       throw new EventNotFound()
     }
 
-    await this.existControlleTicket.execute(createControlleTicketParams.type)
+    await this.existControlleTicket.execute(
+      createControlleTicketParams.type,
+      createControlleTicketParams.eventId
+    )
 
     const createControlleTicket =
       await this.createControlleTicketRepository.execute(

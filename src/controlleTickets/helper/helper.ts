@@ -6,9 +6,9 @@ export class ExistControlleTicket {
   constructor(
     private readonly findControlleTicketByTypeRepository: FindControlleTicketByTypeRepository
   ) {}
-  async execute(type: TicketType) {
+  async execute(type: TicketType, eventId: string) {
     const findControlleTicket =
-      await this.findControlleTicketByTypeRepository.execute(type)
+      await this.findControlleTicketByTypeRepository.execute(type, eventId)
 
     if (findControlleTicket) {
       throw new ControlleTicketExists(type)
