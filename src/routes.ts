@@ -17,7 +17,7 @@ import {
   makeUpdateEventController,
 } from "./factories/event"
 import { IEventByIdParams } from "./event/types"
-import { isAuthenticated } from "./middlewares"
+import { isAuthenticated, isRoleAuthenticated } from "./middlewares"
 import {
   makeCreateTicketController,
   makeDeleteTicketController,
@@ -98,6 +98,7 @@ router.get(
 router.post(
   "/event/create",
   isAuthenticated,
+  isRoleAuthenticated,
   async (request: Request, response: Response) => {
     const createEventController = makeCreateEventController()
 

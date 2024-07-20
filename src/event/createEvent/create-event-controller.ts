@@ -4,7 +4,6 @@ import { CreateEventUseCase } from "./create-event-use-case"
 import { badRequest, created, serverError } from "../../erros/http"
 import { ZodError } from "zod"
 import { DateInvalid, IdNotFound } from "../../erros/errors"
-import { NotAuthorized } from "../../erros/errors"
 
 export class CreateEventController {
   constructor(private readonly createEventUseCase: CreateEventUseCase) {}
@@ -32,12 +31,6 @@ export class CreateEventController {
       }
 
       if (error instanceof DateInvalid) {
-        return badRequest({
-          message: error.message,
-        })
-      }
-
-      if (error instanceof NotAuthorized) {
         return badRequest({
           message: error.message,
         })
