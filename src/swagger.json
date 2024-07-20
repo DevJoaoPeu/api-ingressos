@@ -483,7 +483,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Ticket"
+                "$ref": "#/components/schemas/controlleTicket"
               }
             }
           }
@@ -506,7 +506,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Ticket"
+                  "$ref": "#/components/schemas/controlleTicket"
                 }
               }
             }
@@ -744,20 +744,33 @@
             "type": "string",
             "format": "uuid"
           },
-          "buyerId": {
+          "userId": {
             "type": "string",
             "format": "uuid"
           },
-          "quantity": {
-            "type": "integer"
+          "amountTotal": {
+            "type": "number",
+            "format": "decimal"
+          }
+        }
+      },
+      "controlleTicket": {
+        "type": "object",
+        "properties": {
+          "eventId": {
+            "type": "string",
+            "format": "uuid"
           },
-          "totalAmount": {
+          "qtTicket": {
             "type": "number",
             "format": "decimal"
           },
-          "transactionDate": {
-            "type": "string",
-            "format": "date-time"
+          "type": {
+            "type": "pista | vip"
+          },
+          "price": {
+            "type": "number",
+            "format": "decimal"
           }
         }
       }
