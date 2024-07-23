@@ -10,7 +10,7 @@ export class FindControlleTicketByEventIdController {
   ) {}
   async execute(httpParams: IHttpParamsFindControlleTicket) {
     try {
-      const params = httpParams.body
+      const params = httpParams.params
 
       await findControlleTicketSchema.parseAsync(params)
 

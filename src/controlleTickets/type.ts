@@ -10,7 +10,7 @@ export interface IFindControlleTicketParams {
 }
 
 export interface IHttpParamsFindControlleTicket {
-  body: IFindControlleTicketParams
+  params: IFindControlleTicketParams
 }
 
 export interface IHttpParamsControlleTicket {
