@@ -10,7 +10,12 @@ export interface IFindControlleTicketParams {
 }
 
 export interface IHttpParamsFindControlleTicket {
-  body: IFindControlleTicketParams
+  params: {
+    eventId: string
+  }
+  query: {
+    type: TicketType
+  }
 }
 
 export interface IHttpParamsControlleTicket {
