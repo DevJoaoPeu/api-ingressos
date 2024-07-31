@@ -286,7 +286,10 @@ router.post(
 router.get(
   "/controlleTicket/find/:eventId",
   isAuthenticated,
-  async (request: Request<{ eventId: string }>, response: Response) => {
+  async (
+    request: Request<{ eventId: string }, any, any, { type: TicketType }>,
+    response: Response
+  ) => {
     const findControlleTicketByEventIdController =
       makeFindControlleTicketByEventIdController()
 
