@@ -402,7 +402,10 @@ router.delete(
 
 router.get(
   "/event/listOneTicket/:eventId/:type",
-  async (request: Request<{ saleId: string }>, response: Response) => {
+  async (
+    request: Request<{ eventId: string; type: TicketType }>,
+    response: Response
+  ) => {
     const listAllTicketsController = makeListAllTicketsController()
 
     const { statusCode, body } = await listAllTicketsController.execute(request)

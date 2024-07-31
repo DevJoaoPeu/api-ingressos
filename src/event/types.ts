@@ -1,4 +1,4 @@
-import { Event } from "@prisma/client"
+import { Event, TicketType } from "@prisma/client"
 export interface IEventHttpRequest {
   body: Event
 }
@@ -12,3 +12,8 @@ export interface IEventByIdParams {
 export interface IUpdateEventParams
   extends IEventHttpRequest,
     IEventByIdParams {}
+
+export interface IHttpParamsListTickets {
+  eventId: string
+  type: TicketType
+}

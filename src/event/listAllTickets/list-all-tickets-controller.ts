@@ -1,9 +1,16 @@
-import { ok, serverError } from "src/erros/http"
+import { TicketType } from "@prisma/client"
+import { ok, serverError } from "../../erros/http"
 import { ListAllTicketsUseCase } from "./list-all-tickets-use-case"
 
+interface IhttpParams {
+  params: {
+    eventId: string
+    type: TicketType
+  }
+}
 export class ListAllTicketsController {
   constructor(private readonly listAllTicketsUseCase: ListAllTicketsUseCase) {}
-  async execute(httpParams) {
+  async execute(httpParams: IhttpParams) {
     try {
       const params = httpParams.params
 
