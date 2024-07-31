@@ -13,7 +13,7 @@ export interface IUpdateEventParams
   extends IEventHttpRequest,
     IEventByIdParams {}
 
-export interface IHttpParamsListTickets {
+export interface IHttpListTickets {
   eventId: string
   type: TicketType
 }
