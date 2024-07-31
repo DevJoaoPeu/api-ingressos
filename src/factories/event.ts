@@ -1,3 +1,4 @@
+import { ListAllTicketsRepository } from "src/event/listAllTickets/list-all-tickets-repository"
 import { CreateEventController } from "../event/createEvent/create-event-controller"
 import { CreateEventRepository } from "../event/createEvent/create-event-repository"
 import { CreateEventUseCase } from "../event/createEvent/create-event-use-case"
@@ -17,6 +18,8 @@ import { UpdateEventController } from "../event/updateEvent/update-event-control
 import { UpdateEventRepository } from "../event/updateEvent/update-event-repository"
 import { UpdateEventUseCase } from "../event/updateEvent/update-event-use-case"
 import { FindUserByIdRepository } from "../user/findUserById/find-user-by-id-repository"
+import { ListAllTicketsUseCase } from "src/event/listAllTickets/list-all-tickets-use-case"
+import { ListAllTicketsController } from "src/event/listAllTickets/list-all-tickets-controller"
 
 export const makeCreateEventController = () => {
   const createEventRepository = new CreateEventRepository()
@@ -88,4 +91,18 @@ export const makeFindAllEventsController = () => {
   )
 
   return findAllEventsController
+}
+
+export const makeListAllTicketsController = () => {
+  const listAllTicketsRepository = new ListAllTicketsRepository()
+
+  const listAllTicketsUseCase = new ListAllTicketsUseCase(
+    listAllTicketsRepository
+  )
+
+  const listAllTicketsController = new ListAllTicketsController(
+    listAllTicketsUseCase
+  )
+
+  return listAllTicketsController
 }

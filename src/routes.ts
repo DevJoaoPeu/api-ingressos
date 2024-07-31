@@ -14,6 +14,7 @@ import {
   makeFindAllEventsByUserIdController,
   makeFindAllEventsController,
   makeFindEventByIdController,
+  makeListAllTicketsController,
   makeUpdateEventController,
 } from "./factories/event"
 import { IEventByIdParams } from "./event/types"
@@ -394,6 +395,17 @@ router.delete(
     const deleteSaleController = makeDeleteSaleController()
 
     const { statusCode, body } = await deleteSaleController.execute(request)
+
+    response.status(statusCode).send(body)
+  }
+)
+
+router.get(
+  "/event/listOneTicket/:eventId/:type",
+  async (request: Request<{ saleId: string }>, response: Response) => {
+    const listAllTicketsController = makeListAllTicketsController()
+
+    const { statusCode, body } = await listAllTicketsController.execute(request)
 
     response.status(statusCode).send(body)
   }
