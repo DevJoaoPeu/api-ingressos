@@ -29,3 +29,8 @@ export const saleNotFoundResponse = () =>
   notFound({
     message: "sale not found",
   })
+
+export const ticketsSoldOut = () =>
+  notFound({
+    message: "Ticket sold out",
+  })

@@ -1,8 +1,8 @@
 import { prisma } from "../../prisma/PrismaClient/prisma"
-import { IHttpParamsListTickets } from "../types"
+import { IHttpListTickets } from "../types"
 
-export class ListAllTicketsRepository {
-  async execute(listTickets: IHttpParamsListTickets) {
+export class ListOneTicketRepository {
+  async execute(listTickets: IHttpListTickets) {
     return await prisma.ticket.findMany({
       where: {
         eventId: listTickets.eventId,
