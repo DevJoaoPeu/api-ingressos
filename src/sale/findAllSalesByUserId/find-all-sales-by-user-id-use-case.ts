@@ -6,6 +6,25 @@ export class FindAllSalesByUserIdUseCase {
       where: {
         userId,
       },
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+        ticket: {
+          select: {
+            price: true,
+            event: {
+              select: {
+                name: true,
+                dtStart: true,
+                dtEnd: true,
+              },
+            },
+          },
+        },
+      },
     })
 
     return findSales
