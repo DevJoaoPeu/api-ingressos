@@ -24,5 +24,5 @@ export const createRatesSchema = z.object({
     .min(1, {
       message: "userId is required",
     }),
-  rate: z.number({ message: "Rate is required" }),
+  note: z.number({ message: "Note is required" }),
 })
