@@ -1,6 +1,6 @@
-import { CreateRatesController } from "../../src/rates/CreateRates/rates.controller"
-import { CreateRatesRepository } from "../../src/rates/CreateRates/rates.repository"
-import { CreateRatesService } from "../../src/rates/CreateRates/rates.service"
+import { CreateRatesController } from "../rates/CreateRates/rates.controller"
+import { CreateRatesRepository } from "../rates/CreateRates/rates.repository"
+import { CreateRatesService } from "../rates/CreateRates/rates.service"
 
 export const makeCreateRatesController = () => {
   const createRatesRepository = new CreateRatesRepository()
