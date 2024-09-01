@@ -40,6 +40,7 @@ import {
   makeFindAllSalesByUserIdController,
   makeFindSaleByIdController,
 } from "./factories/sale"
+import { makeCreateRatesController } from "./factories/rates"
 
 const router = Router()
 
@@ -413,5 +414,13 @@ router.get(
     response.status(statusCode).send(body)
   }
 )
+
+router.post("/rates/create", async (request: Request, response: Response) => {
+  const createRatesController = makeCreateRatesController()
+
+  const { statusCode, body } = await createRatesController.execute(request)
+
+  response.status(statusCode).send(body)
+})
 
 export { router }
