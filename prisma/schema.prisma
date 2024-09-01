@@ -27,6 +27,7 @@ model User {
   role       String   @default("client")
   sale       Sale[]
   Event      Event[]
+  Rates      Rates[]
 
   @@map("user")
 }
@@ -81,4 +82,12 @@ model ControllerTicket {
   eventId  String
 
   @@map("controllerTicket")
+}
+
+model Rates {
+  id          String  @id @default(uuid())
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  description String?
+  note        Int
 }
