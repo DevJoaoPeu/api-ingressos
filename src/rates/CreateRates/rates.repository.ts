@@ -1,5 +1,5 @@
 import { Rates } from "@prisma/client"
-import { prisma } from "src/prisma/PrismaClient/prisma"
+import { prisma } from "../../prisma/PrismaClient/prisma"
 
 export class CreateRatesRepository {
   async execute(createRatesParams: Rates) {
